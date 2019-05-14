@@ -17,5 +17,17 @@ namespace MedicalClinicKHD.Controllers
         {
             return View();
         }
+        public ActionResult LoginDoctor(string title, string password)
+        {
+            var i = Hctp.GetApi("get", "Doctor/LoginDoctor?name=" + title + "&pwd=" + password);
+            if (Convert.ToInt32(i) > 0)
+            {
+                return Content("成功");
+            }
+            else
+            {
+                return Content("失败");
+            }
+        }
     }
 }

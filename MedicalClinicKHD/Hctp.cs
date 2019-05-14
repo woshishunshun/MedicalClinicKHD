@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 
-namespace YueKaoKHD
-{
+
     public static class Hctp
     {
         public static string GetApi(string Name, string action, object obj = null)
@@ -41,4 +40,4 @@ namespace YueKaoKHD
             return str;
         }
     }
-}
+
