@@ -1,0 +1,194 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/layer/layer.js"></script>
+    <link href="~/Content/iecss.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>MedicalClinic</title>
+    <script>
+        function LoginLayer() {
+            //登陆iframe窗
+            layer.open({
+                type: 2,
+                title: 'MedicalClinic预约挂号 登陆',
+                shadeClose: true,
+                shade: false,
+                maxmin: true, //开启最大化最小化按钮
+                area: ['893px', '600px'],
+                content: '/PatientLogin/PatientLoginShow'
+            });
+        }
+        function RegisterLayer() {
+            //注册iframe窗
+            layer.open({
+                type: 2,
+                title: 'MedicalClinic预约挂号 注册',
+                shadeClose: true,
+                shade: false,
+                maxmin: true, //开启最大化最小化按钮
+                area: ['893px', '600px'],
+                content: '/PatientLogin/PatientRegisterShow'
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="main_container">
+        <div class="header">
+            <div id="logo"><a href="index.html"><img src="~/images/logo.png" alt="" title="" width="162" height="54" border="0" /></a></div>
+
+            <div class="right_header">
+
+                <div class="top_menu">
+                    <a href="#" class="login" onclick="LoginLayer()">登陆</a>
+                    <a href="#" class="sign_up" onclick="RegisterLayer()">注册</a>
+                </div>
+
+                <div id="menu">
+                    <ul>
+                        <li><a class="current" href="#" title="">主页</a></li>
+                        <li><a href="#" title="">挂号</a></li>
+                        <li><a href="#" title="">其他服务</a></li>
+                        <li><a href="#" title="">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="middle_box">
+            <div class="middle_box_content"><img src="~/images/banner_content.jpg" alt="" title="" /></div>
+        </div>
+
+        <div class="pattern_bg">
+
+            <div class="pattern_box">
+                <div class="pattern_box_icon"><img src="~/images/icon1.png" alt="" title="" width="70" height="112" /></div>
+                <div class="pattern_content">
+                    <h1>我 <span class="blue">的良药</span></h1>
+                    <p class="pat">
+                        快乐是唯一不苦口的良药，它能让人得到治愈，并不昂贵，效果却最为良好，愿您每天开心，保存好心情，要知道-知足者常乐~
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="pattern_box">
+                <div class="pattern_box_icon"><img src="~/images/icon2.png" alt="" title="" width="70" height="112" /></div>
+                <div class="pattern_content">
+                    <h1>搜索<span class="blue">治疗</span></h1>
+                    <p class="pat">
+                        如果您能了解自己的病症，就可以节省许多的时间，对症下药是最快治愈疾病的方法，请照顾好您的身体，它才是您一切的根基。
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div id="main_content">
+
+            <div class="box_content">
+                <div class="box_title">
+                    <div class="title_icon"><img src="~/images/mini_icon1.gif" alt="" title="" /></div>
+                    <h2>今日 <span class="dark_blue">事件</span></h2>
+                </div>
+
+                <div class="box_text_content">
+                    <img src="~/images/calendar.gif" alt="" title="" class="box_icon" />
+                    <div class="box_text">
+                        5.10 我们最新的一批医疗设备已经投入使用，先进的科技，为您的治疗带来全新的体验，最大程度的减轻患者的痛苦是我们一直以来追求的，本次更新...
+                    </div>
+                    <a href="#" class="details">+阅读更多</a>
+                </div>
+
+                <div class="box_text_content">
+                    <img src="~/images/calendar.gif" alt="" title="" class="box_icon" />
+                    <div class="box_text">
+                        5.10 今日医疗养生座谈会将在3楼大讲堂举行，我们特别邀请了著名养生专家 齐顺 先生和著名养...
+                    </div>
+                    <a href="#" class="details">+阅读更多</a>
+                </div>
+
+            </div>
+
+
+            <div class="box_content">
+                <div class="box_title">
+                    <div class="title_icon"><img src="~/images/mini_icon2.gif" alt="" title="" /></div>
+                    <h2>关于 <span class="dark_blue"> 我们</span></h2>
+                </div>
+
+                <div class="box_text_content">
+                    <img src="~/images/checked.gif" alt="" title="" class="box_icon" />
+                    <div class="box_text">
+                        本院建立于1994年，春末，多年来，坚持以诚为本，以救死扶伤为己任，为让患者得到更好的体验不断努力，改...
+                    </div>
+                    <a href="#" class="details">+阅读更多</a>
+                </div>
+
+                <div class="box_text_content">
+                    <img src="~/images/checked.gif" alt="" title="" class="box_icon" />
+                    <div class="box_text">
+                        本院曾荣获奖项1.降低RCA门诊手术管理成本 2. 创新型创伤急救应急管理系统的开发 3.计算机辅助手术系...
+                    </div>
+                    <a href="#" class="details">+阅读更多</a>
+                </div>
+
+            </div>
+
+
+            <div class="box_content">
+                <div class="box_title">
+                    <div class="title_icon"><img src="~/images/mini_icon3.gif" alt="" title="" /></div>
+                    <h2>健康 <span class="dark_blue">贴士</span></h2>
+                </div>
+
+                <div class="box_text_content">
+                    <img src="~/images/checked.gif" alt="" title="" class="box_icon" />
+                    <div class="box_text">
+                        熬夜会给身体带来哪些危害呢？
+                        1、免疫力会下降
+                        人经常熬夜造成的后遗症，最严重的就是疲劳、精神不振;人...
+                    </div>
+                    <a href="#" class="details">+阅读更多</a>
+                </div>
+
+                <div class="box_text_content">
+                    <img src="~/images/checked.gif" alt="" title="" class="box_icon" />
+                    <div class="box_text">
+                        四种汤竟是“补钙高手”
+                        鱼头豆腐汤。数据显示，每100克北豆腐含有138毫克钙...
+                    </div>
+                    <a href="#" class="details">+阅读更多</a>
+                </div>
+
+            </div>
+
+            <div class="clear"></div>
+        </div>
+
+
+        <div id="footer">
+            <div class="copyright">
+                <img src="~/images/footer_logo.gif" alt="" title="" />
+            </div>
+            <div class="center_footer">&copy; Medical Clinic 2008. All Rights Reserved</div>
+            <div class="footer_links">
+                <a href="http://www.cssmoban.com">网页模板</a>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</body>
+</html>
+
