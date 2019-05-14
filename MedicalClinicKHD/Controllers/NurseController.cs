@@ -6,30 +6,30 @@ using System.Web.Mvc;
 
 namespace MedicalClinicKHD.Controllers
 {
-    public class PatientLoginController : Controller
+    public class NurseController : Controller
     {
-        // GET: PatientLogin
+        // GET: Nurse
         /// <summary>
-        /// 主界面
+        /// 护士登录
         /// </summary>
         /// <returns></returns>
-        public ActionResult ShowIndex()
+        public ActionResult NurseLogin()
         {
             return View();
         }
         /// <summary>
-        /// 登陆界面
+        /// 病人挂号
         /// </summary>
         /// <returns></returns>
-        public ActionResult PatientLoginShow()
+        public ActionResult Registered()
         {
             return View();
         }
         /// <summary>
-        /// 注册界面
+        /// 病人注册
         /// </summary>
         /// <returns></returns>
-        public ActionResult PatientRegisterShow()
+        public ActionResult PatientAdd()
         {
             return View();
         }
