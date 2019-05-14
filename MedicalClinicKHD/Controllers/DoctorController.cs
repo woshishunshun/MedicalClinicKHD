@@ -13,5 +13,9 @@ namespace MedicalClinicKHD.Controllers
         {
             return View();
         }
+        public ActionResult LoginDocter()
+        {
+            return View();
+        }
     }
 }
