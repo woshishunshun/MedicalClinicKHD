@@ -10,10 +10,26 @@ namespace MedicalClinicKHD.Controllers
     {
         // GET: PatientLogin
         /// <summary>
-        /// 病人登陆界面
+        /// 主界面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ShowIndex()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 登陆界面
         /// </summary>
         /// <returns></returns>
         public ActionResult PatientLoginShow()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 注册界面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult PatientRegisterShow()
         {
             return View();
         }

@@ -167,6 +167,15 @@
     <Content Include="images\pattern_bg.gif" />
     <Content Include="images\sign_up.gif" />
     <Content Include="Content\style.css" />
+    <Content Include="layer\layer.js" />
+    <Content Include="layer\mobile\layer.js" />
+    <Content Include="layer\mobile\need\layer.css" />
+    <Content Include="layer\theme\default\icon-ext.png" />
+    <Content Include="layer\theme\default\icon.png" />
+    <Content Include="layer\theme\default\layer.css" />
+    <Content Include="layer\theme\default\loading-0.gif" />
+    <Content Include="layer\theme\default\loading-1.gif" />
+    <Content Include="layer\theme\default\loading-2.gif" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="images\Thumbs.db" />
@@ -196,7 +205,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\PatientLogin\ShowIndex.cshtml" />
     <Content Include="Views\PatientLogin\PatientLoginShow.cshtml" />
+    <Content Include="Views\PatientLogin\PatientRegisterShow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
