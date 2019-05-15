@@ -86,6 +86,11 @@ namespace MedicalClinicKHD.Controllers
                 Response.Write("删除失败");
             }
         }
+        /// <summary>
+        /// 模糊查询
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public ActionResult Cha(string name)
         {
             string list = Hctp.GetApi("get", "Administrator/doctorsShow?Name=" + name, null);
