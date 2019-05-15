@@ -1,0 +1,40 @@
+﻿@using MedicalClinicKHD.Models
+@model StaffLoginModels
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+        {
+            <table>
+                <tr>
+                    <td>用户名：</td>
+                    <td>@Html.TextBoxFor(model => model.Sl_Name)</td>
+                </tr>
+                <tr>
+                    <td>用户密码：</td>
+                    <td>@Html.TextBoxFor(model => model.Sl_Pwd)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="Submit1" type="submit" value="登录" class="alert-success" />
+                    </td>
+                </tr>
+            </table>
+        }
+
+    </div>
+</body>
+</html>
