@@ -328,10 +328,10 @@
     <Content Include="Views\PatientLogin\PatientLoginShow.cshtml" />
     <Content Include="Views\Doctor\LoginDocter.cshtml" />
     <Content Include="Views\Doctor\Registration.cshtml" />
+    <Content Include="Views\Registration\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Registration\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
