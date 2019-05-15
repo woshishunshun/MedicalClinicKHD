@@ -10,10 +10,10 @@ namespace MedicalClinicKHD.Controllers
     {
         // GET: Nurse
         /// <summary>
-        /// 护士登录
+        /// 病人查询
         /// </summary>
         /// <returns></returns>
-        public ActionResult NurseLogin()
+        public ActionResult PatientQuery()
         {
             return View();
         }
@@ -26,10 +26,10 @@ namespace MedicalClinicKHD.Controllers
             return View();
         }
         /// <summary>
-        /// 病人注册
+        /// 护士
         /// </summary>
         /// <returns></returns>
-        public ActionResult PatientAdd()
+        public ActionResult Login()
         {
             return View();
         }

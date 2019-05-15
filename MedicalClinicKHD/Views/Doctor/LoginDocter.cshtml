@@ -11,6 +11,7 @@
     <script src="~/layui-v2.4.5/layui/layui.js"></script>
     <script src="~/Scripts/layer.js"></script>
     <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <link href="~/Content/iecss.css" rel="stylesheet" />
     <link href="~/Content/style.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
@@ -35,13 +36,13 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">输入框</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="title" required lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                        <input id="name" type="text" name="title" required lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">密码框</label>
                     <div class="layui-input-inline">
-                        <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                        <input id="pwd" type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-input-block">
@@ -61,7 +62,17 @@
 </body>
 </html>
 <script>
+ 
     function fun(a) {
         alert(a);
+        if (a == "成功")
+        {
+            location.href = "/Doctor/Registration"
+        }
+        else
+        {
+            $("#pwd").val(null);
+        }
     }
+ 
 </script>

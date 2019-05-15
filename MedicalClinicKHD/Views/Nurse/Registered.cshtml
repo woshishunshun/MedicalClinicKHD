@@ -1,0 +1,145 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/iecss.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery-1.8.3.min.js"></script>
+    <link href="~/Content/loginDialog.css" rel="stylesheet" />
+    <title>Registered</title>
+    <script type="text/javascript">
+        $(function ($) {
+            //弹出登录
+            $("#example").hover(function () {
+                $(this).stop().animate({
+                    opacity: '1'
+                }, 600);
+            }, function () {
+                $(this).stop().animate({
+                    opacity: '0.6'
+                }, 1000);
+            }).on('click', function () {
+                $("body").append("<div id='mask'></div>");
+                $("#mask").addClass("mask").fadeIn("slow");
+                $("#LoginBox").fadeIn("slow");
+            });
+            //
+            //按钮的透明度
+            $("#loginbtn").hover(function () {
+                $(this).stop().animate({
+                    opacity: '1'
+                }, 600);
+            }, function () {
+                $(this).stop().animate({
+                    opacity: '0.8'
+                }, 1000);
+            });
+            //文本框不允许为空---按钮触发
+            $("#loginbtn").on('click', function () {
+                var txtName = $("#txtName").val();
+                var txtPwd = $("#txtPwd").val();
+                if (txtName == "" || txtName == undefined || txtName == null) {
+                    if (txtPwd == "" || txtPwd == undefined || txtPwd == null) {
+                        $(".warning").css({ display: 'block' });
+                    }
+                    else {
+                        $("#warn").css({ display: 'block' });
+                        $("#warn2").css({ display: 'none' });
+                    }
+                }
+                else {
+                    if (txtPwd == "" || txtPwd == undefined || txtPwd == null) {
+                        $("#warn").css({ display: 'none' });
+                        $(".warn2").css({ display: 'block' });
+                    }
+                    else {
+                        $(".warning").css({ display: 'none' });
+                    }
+                }
+            });
+            //文本框不允许为空---单个文本触发
+            $("#txtName").on('blur', function () {
+                var txtName = $("#txtName").val();
+                if (txtName == "" || txtName == undefined || txtName == null) {
+                    $("#warn").css({ display: 'block' });
+                }
+                else {
+                    $("#warn").css({ display: 'none' });
+                }
+            });
+            $("#txtName").on('focus', function () {
+                $("#warn").css({ display: 'none' });
+            });
+            //
+            $("#txtPwd").on('blur', function () {
+                var txtName = $("#txtPwd").val();
+                if (txtName == "" || txtName == undefined || txtName == null) {
+                    $("#warn2").css({ display: 'block' });
+                }
+                else {
+                    $("#warn2").css({ display: 'none' });
+                }
+            });
+            $("#txtPwd").on('focus', function () {
+                $("#warn2").css({ display: 'none' });
+            });
+            //关闭
+            $(".close_btn").hover(function () { $(this).css({ color: 'black' }) }, function () { $(this).css({ color: '#999' }) }).on('click', function () {
+                $("#LoginBox").fadeOut("fast");
+                $("#mask").css({ display: 'none' });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="main_container">
+        <div class="header">
+            <div id="logo"><a href="~/Nurses/PatientQuery"><img src="~/images/logo.png" alt="" title="" width="162" height="54" border="0" /></a></div>
+            <div class="right_header">
+                <div class="top_menu">
+                    <a href="~/Nurse/Login" class="login" onclick="LoginLayer()">登陆</a>
+                    <a href="#" class="sign_up" onclick="RegisterLayer()">注册</a>
+                </div>
+                @*导航栏*@
+                <div id="menu">
+                    <ul>
+                        <li><a href="~/Nurse/PatientQuery" title="">主页</a></li>
+                        <li><a class="current" href="~/Nurse/Registered" title="">挂号</a></li>
+                        <li><a href="~/Nurse/" title="">其他服务</a></li>
+                        <li><a href="~/Nurse/" title="">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="middle_box">
+            <a href="#" id="example">查询病人信息</a>
+            @*弹出窗口查找*@
+            <div id="LoginBox">
+                <div class="row1">
+                    病人信息查询<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
+                </div>
+                <div class="row">
+                    名&nbsp;&nbsp;&nbsp;&nbsp;称: <span class="inputBox">
+                        <input type="text" id="txtName" placeholder="病人名称" />
+                    </span><a href="javascript:void(0)" title="提示" class="warning" id="warn">*</a>
+                </div>
+                <div class="row">
+                    手机号: <span class="inputBox">
+                        <input type="text" id="txtPwd" placeholder="病人手机号" />
+                    </span><a href="javascript:void(0)" title="提示" class="warning" id="warn2">*</a>
+                </div>
+                <div class="row">
+                    <a href="#" id="loginbtn">查找</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
