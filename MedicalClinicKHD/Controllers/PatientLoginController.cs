@@ -31,7 +31,7 @@ namespace MedicalClinicKHD.Controllers
             var i = Hctp.GetApi("get", "PatientLogin/PatientLogin?PatientName=" + title + "&PatientPwd=" + password);
             if (Convert.ToInt32(i) > 0)
             {
-                Response.Write("<script>alert('登陆成功');location.href='/PatientLogin/ShowIndex'</script>");
+                Response.Write("<script>alert('登陆成功');var index = parent.layer.getFrameIndex(window.name);parent.layer.close(index);location.href='/PatientLogin/ShowIndex'</script>");
             }
             else
             {
