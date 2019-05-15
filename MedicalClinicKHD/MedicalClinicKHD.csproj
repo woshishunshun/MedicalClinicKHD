@@ -132,6 +132,7 @@
     <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NurseController.cs" />
     <Compile Include="Controllers\PatientLoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
@@ -315,7 +316,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\PatientLogin\PatientLoginShow.cshtml" />
     <Content Include="Views\Doctor\LoginDocter.cshtml" />
-    <Content Include="Views\Administrator\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
