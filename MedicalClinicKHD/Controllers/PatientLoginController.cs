@@ -25,6 +25,19 @@ namespace MedicalClinicKHD.Controllers
         {
             return View();
         }
+        //病人登陆
+        public void LoginPatient(string title, string password)
+        {
+            var i = Hctp.GetApi("get", "PatientLogin/PatientLogin?PatientName=" + title + "&PatientPwd=" + password);
+            if (Convert.ToInt32(i) > 0)
+            {
+                Response.Write("<script>alert('登陆成功');location.href='/PatientLogin/ShowIndex'</script>");
+            }
+            else
+            {
+                 Content("失败");
+            }
+        }
         /// <summary>
         /// 注册界面
         /// </summary>
