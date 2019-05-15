@@ -139,6 +139,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hctp.cs" />
+    <Compile Include="Models\Administrative.cs" />
+    <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\Doctorecord.cs" />
+    <Compile Include="Models\Drug.cs" />
+    <Compile Include="Models\Nurse.cs" />
+    <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\PatientLogin.cs" />
+    <Compile Include="Models\Registration.cs" />
+    <Compile Include="Models\Returnrecord.cs" />
+    <Compile Include="Models\StaffLogin.cs" />
     <Compile Include="Models\StaffLoginModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -294,6 +304,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -316,6 +327,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\PatientLogin\PatientLoginShow.cshtml" />
     <Content Include="Views\Doctor\LoginDocter.cshtml" />
+    <Content Include="Views\Doctor\Registration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
