@@ -128,6 +128,7 @@
     <Compile Include="App_Start\RouteConfig2.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NurseController.cs" />
     <Compile Include="Controllers\PatientLoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
@@ -310,6 +311,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\PatientLogin\PatientLoginShow.cshtml" />
     <Content Include="Views\Doctor\LoginDocter.cshtml" />
+    <Content Include="Views\PatientLogin\PatientRegisterShow.cshtml" />
+    <Content Include="Views\PatientLogin\ShowIndex.cshtml" />
+    <Content Include="Views\Nurse\NurseLogin.cshtml" />
+    <Content Include="Views\Nurse\PatientAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
