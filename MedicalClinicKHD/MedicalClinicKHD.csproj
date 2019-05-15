@@ -310,6 +310,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\PatientLogin\PatientLoginShow.cshtml" />
     <Content Include="Views\Doctor\LoginDocter.cshtml" />
+    <Content Include="Views\PatientLogin\ShowIndex.cshtml" />
+    <Content Include="Views\PatientLogin\PatientRegisterShow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
