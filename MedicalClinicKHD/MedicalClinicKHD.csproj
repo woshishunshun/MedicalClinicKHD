@@ -122,19 +122,23 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\BundleConfig2.cs" />
+    <Compile Include="App_Start\BundleConfig3.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\FilterConfig2.cs" />
+    <Compile Include="App_Start\FilterConfig3.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\RouteConfig2.cs" />
+    <Compile Include="App_Start\RouteConfig3.cs" />
+    <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NurseController.cs" />
     <Compile Include="Controllers\PatientLoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hctp.cs" />
+    <Compile Include="Models\StaffLoginModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -311,14 +315,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\PatientLogin\PatientLoginShow.cshtml" />
     <Content Include="Views\Doctor\LoginDocter.cshtml" />
-    <Content Include="Views\PatientLogin\PatientRegisterShow.cshtml" />
-    <Content Include="Views\PatientLogin\ShowIndex.cshtml" />
-    <Content Include="Views\Nurse\NurseLogin.cshtml" />
-    <Content Include="Views\Nurse\PatientAdd.cshtml" />
+    <Content Include="Views\Administrator\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Registration\" />
   </ItemGroup>
   <ItemGroup>
