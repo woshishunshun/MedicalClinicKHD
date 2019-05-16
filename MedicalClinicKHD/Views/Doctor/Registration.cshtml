@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
        Layout = null;
 }
 @using MedicalClinicKHD.Models;
@@ -48,15 +47,11 @@
                     <td>@i.Reg_Time</td>         
                     @if(i.Reg_Type==0)
                     {
-                     <td>@Ajax.ActionLink("叫号", "Type_change1", new { id = i.Reg_Id }, new AjaxOptions {  OnSuccess="fun" }) </td>
+                     <td>@Ajax.ActionLink("叫号", "JiaoHao", new { id = i.Reg_Id }, new AjaxOptions {  OnSuccess="fun" }) </td>
                     }
                     @if(i.Reg_Type==1)
                     {
                      <td>正在就诊|@Ajax.ActionLink("结束就诊", "Type_change2" ,new { id = i.Reg_Id }, new AjaxOptions { OnSuccess = "fun" })</td>             
-                    }
-                    @if(i.Reg_Type==2)
-                    {
-                    <td>已近就诊完</td>
                     }
                 </tr>
                 }

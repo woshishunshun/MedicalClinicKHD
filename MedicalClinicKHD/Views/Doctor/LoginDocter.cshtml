@@ -56,23 +56,29 @@
             <div class="middle_box_content"><img src="~/images/banner_content.jpg" alt="" title="" /></div>
         </div>
 
+        <p id="p1">
 
+        </p>
 
     </div>
 </body>
 </html>
 <script>
- 
+
     function fun(a) {
         alert(a);
-        if (a == "成功")
-        {
+        if (a == "成功") {
             location.href = "/Doctor/Registration"
         }
-        else
-        {
+        else {
             $("#pwd").val(null);
         }
     }
- 
+    $.ajax({
+        url: "/Doctor/Abc",
+        type: "get",
+        success: function (f) {
+            $("#p1").text(f);
+        }
+    })
 </script>

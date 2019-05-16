@@ -330,6 +330,7 @@
     <Content Include="Views\Administrator\DoctorShow.cshtml" />
     <Content Include="Views\Administrator\DoctorAdd.cshtml" />
     <Content Include="Views\Shared\_table.cshtml" />
+    <Content Include="Views\Doctor\Registration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
