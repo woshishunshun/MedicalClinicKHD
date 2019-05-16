@@ -140,6 +140,13 @@
     <Compile Include="Hctp.cs" />
     <Compile Include="Models\AdministrativeModels.cs" />
     <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\Doctorecord.cs" />
+    <Compile Include="Models\Drug.cs" />
+    <Compile Include="Models\Nurse.cs" />
+    <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\PatientLogin.cs" />
+    <Compile Include="Models\Registration.cs" />
+    <Compile Include="Models\Returnrecord.cs" />
     <Compile Include="Models\StaffLoginModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
