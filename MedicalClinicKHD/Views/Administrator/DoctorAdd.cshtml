@@ -1,0 +1,62 @@
+﻿@using MedicalClinicKHD.Models
+@model Doctor
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DoctorAdd</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Content/WdatePicker.js"></script>
+
+</head>
+<body>
+    <div> 
+        @using (Html.BeginForm())
+
+        {
+        <table>
+            <tr>
+                <td>所属科室：</td>
+                <td>@Html.DropDownList("KS", ViewBag.KS as IEnumerable<SelectListItem>, "请选择")</td>
+            </tr>
+            <tr>
+                <td>医生姓名：</td>
+                <td>@Html.TextBoxFor(model => model.Doc_Name)</td>
+            </tr>
+            <tr>
+                <td>医生年龄：</td>
+                <td>@Html.TextBoxFor(model => model.Doc_Age)</td>
+            </tr>
+            <tr>
+                <td>医生性别：</td>
+                <td>
+                    @Html.RadioButtonFor(model => model.Doc_Sex, "1", new { @checked = true })<sapn>男</sapn>
+                    @Html.RadioButtonFor(model => model.Doc_Sex, "0")<span>女</span>
+                </td>
+            </tr>
+            <tr>
+                <td>入职时间：</td>
+                <td>@Html.TextBoxFor(model => model.Doc_Time, new { onclick = "WdatePicker()" })</td>
+            </tr>
+            <tr>
+                <td>医生状态：</td>
+                <td>
+                    @Html.RadioButtonFor(model => model.Doc_Type, "1", new { @checked = true })<sapn>就诊</sapn>
+                    @Html.RadioButtonFor(model => model.Doc_Type, "0")<span>空闲</span>
+                </td>
+            </tr>
+            <tr>
+                <td><input id="Submit1" type="submit" value="添加" /></td>
+                <td><input id="Submit1" type="submit" value="取消" /></td>
+            </tr>
+        </table>
+        }        
+    </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/layui-v2.4.5/layui/layui.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/layer/layer.js"></script>
+    <link href="~/Content/iecss.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>预约挂号</title>
+</head>
+<body>
+    <div id="main_container">
+        <div class="header">
+            <div id="logo"><a href="index.html"><img src="~/images/logo.png" alt="" title="" width="162" height="54" border="0" /></a></div>
+
+            <div class="right_header">
+
+                <div class="top_menu">
+                    <a href="#" class="login" onclick="LoginLayer()">登陆</a>
+                    <a href="#" class="sign_up" onclick="RegisterLayer()">注册</a>
+                </div>
+
+                <div id="menu">
+                    <ul>
+                        <li><a class="current" href="#" title="">主页</a></li>
+                        <li><a href="#" title="">挂号</a></li>
+                        <li><a href="#" title="">其他服务</a></li>
+                        <li><a href="#" title="">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="middle_box">
+            <div class="middle_box_content"><img src="~/images/banner_content.jpg" alt="" title="" /></div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend>预约挂号</legend>
+        </fieldset>
+
+        <div class="layui-tab layui-tab-card">
+            <ul class="layui-tab-title">
+                <li class="layui-this">@DateTime.Now.Month 月 @DateTime.Now.Day 日 </li>
+                <li>@DateTime.Now.Month 月 @DateTime.Now.AddDays(1).Day 日 </li>
+                <li>@DateTime.Now.Month 月 @DateTime.Now.AddDays(2).Day 日 </li>
+                <li>@DateTime.Now.Month 月 @DateTime.Now.AddDays(3).Day 日 </li>
+                <li>@DateTime.Now.Month 月 @DateTime.Now.AddDays(4).Day 日 </li>
+                <li>@DateTime.Now.Month 月 @DateTime.Now.AddDays(5).Day 日 </li>
+                <li>@DateTime.Now.Month 月 @DateTime.Now.AddDays(6).Day 日 </li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">9:00-11:00</li>
+                            <li>13:00-15:00</li>
+                            <li>17:30-19:30</li>
+                        </ul>
+                        <div class="layui-tab-content" style="height: 100px;">
+                            <div class="layui-tab-item layui-show">内容不一样是要有，因为你可以监听tab事件（阅读下文档就是了）</div>
+                            <div class="layui-tab-item">内容2</div>
+                            <div class="layui-tab-item">内容3</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">内容2</div>
+                <div class="layui-tab-item">内容3</div>
+                <div class="layui-tab-item">内容4</div>
+                <div class="layui-tab-item">内容5</div>
+                <div class="layui-tab-item">内容6</div>
+                <div class="layui-tab-item">内容7</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    layui.use('element', function () {
+        var element = layui.element;
+
+        //一些事件监听
+        element.on('tab(demo)', function (data) {
+            console.log(data);
+        });
+    });
+</script>
