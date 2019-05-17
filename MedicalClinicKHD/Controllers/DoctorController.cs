@@ -37,9 +37,9 @@ namespace MedicalClinicKHD.Controllers
         {
             var i = kc.Value;
             var getDocId = Hctp.GetApi("get", "Doctor/GetLoginTable");
-            var getDocId01 = JsonConvert.DeserializeObject<List<StaffLogin>>(getDocId).Where(m => m.Sl_Name == i).FirstOrDefault().Sl_Id;
+            var getDocId01 = JsonConvert.DeserializeObject<List<StaffLoginModels>>(getDocId).Where(m => m.Sl_Name == i).FirstOrDefault().Sl_Id;
             var list = Hctp.GetApi("get", "Doctor/GetRegistrations");
-            var list1 = JsonConvert.DeserializeObject<List<Registration>>(list).Where(m => m.Doc_Id == getDocId01).ToList();
+            var list1 = JsonConvert.DeserializeObject<List<RegistrationModels>>(list).Where(m => m.Doc_Id == getDocId01).ToList();
             return View(list1);
         }
     }

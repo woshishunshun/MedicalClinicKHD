@@ -140,6 +140,8 @@
     <Compile Include="Hctp.cs" />
     <Compile Include="Models\AdministrativeModels.cs" />
     <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\NurseModels.cs" />
+    <Compile Include="Models\RegistrationModels.cs" />
     <Compile Include="Models\StaffLoginModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -323,6 +325,13 @@
     <Content Include="Views\Administrator\DoctorShow.cshtml" />
     <Content Include="Views\Administrator\DoctorAdd.cshtml" />
     <Content Include="Views\Shared\_table.cshtml" />
+    <Content Include="Views\Administrator\EidtorDoctor.cshtml" />
+    <Content Include="Views\Administrator\LoginAdd.cshtml" />
+    <Content Include="Views\Administrator\Administratorpreants.cshtml" />
+    <Content Include="Views\Administrator\NurseShow.cshtml" />
+    <Content Include="Views\Shared\_table1.cshtml" />
+    <Content Include="Views\Administrator\NurseAdd.cshtml" />
+    <Content Include="Views\Administrator\EidtorNurse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
