@@ -154,16 +154,20 @@
         }
         //挂号
         function UpLogin() {
-            var login = new Object();
-            login.Pat_Id = $("#txtPat_Id").val();
-            login.Reg_Time = @(DateTime.Now.ToString("yyyy-MM-dd"));
-            login.Adm_Id = $("#txtAdm_Name").val();
-            login.Doc_Id = $("#txtDoc_Name").val();
-            login.Reg_Type = 0;
+
+            var data = new Date();
+            var Year = data.getFullYear();
+            var Month = data.getMonth() + 1;
+            var Day = data.getDate();
+            var Pat_Id = $("#txtPat_Id").val();
+            var Reg_Time = Year + "-" + Month + "-" + Day;
+            var Adm_Id = $("#txtAdm_Name").val();
+            var Doc_Id = $("#txtDoc_Name").val();
+            var Reg_Type = 0;
             $.ajax({
-                url: "http://localhost:55253/API/Nurse/PatientLoginAdd?re=" + JSON.stringify(login),
+                url: "http://localhost:55253/API/Nurse/PatientLoginAdd",
                 type: "post",
-                dataType: "json",
+                data: { 'Pat_Id': Pat_Id, 'Reg_Time': Reg_Time, 'Adm_Id': Adm_Id, 'Doc_Id': Doc_Id, 'Reg_Type': Reg_Type },
                 success: function (data) {
                     if (data > 0) {
                         alert("挂号成功(#^.^#)");
