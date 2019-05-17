@@ -8,9 +8,11 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    @*页面布局*@
     <link href="~/Content/iecss.css" rel="stylesheet" />
     <link href="~/Content/style.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    @*弹出窗口查找*@
     <script src="~/Scripts/jquery-1.8.3.min.js"></script>
     <link href="~/Content/loginDialog.css" rel="stylesheet" />
     <title>Registered</title>
@@ -96,9 +98,92 @@
                 $("#mask").css({ display: 'none' });
             });
         });
+
+
+        //查询病人信息
+        function AtientQuery() {
+            var phone = $("#txtPhone").val();
+            $.ajax({
+                url: "http://localhost:55253/API/Nurse/PatientShow?phone=" + phone,
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    if (data > 0) {
+                        $("#txtPat_Id").val() = this.Pat_Id
+                        $("#txtPat_Name").val() = this.Pat_Name
+                        $("#txtPat_Sex").val() = this.Pat_Sex
+                        $("#txtPat_Age").val() = this.Pat_Age
+                        $("#txtPat_Phone").val() = this.Pat_Phone
+                        $("#txtPat_Sfz").val() = this.Pat_Sfz
+                    }
+                    else {
+                        alert("查无此人");
+                    }
+                }
+            })
+        }
+        $(function () {
+            $.ajax({
+                url: "http://localhost:55253/API/Nurse/AdministrativeShow",
+                type: "get",
+                success: function (data) {
+                    $(data).each(function () {
+                        $("#txtAdm_Name").append("<option value=" + this.Adm_Id + ">" + this.Adm_Name + "</option>");
+                    })
+                }
+            })
+        })
+        $("#Adm_Name").change(function () {
+            var id = $("#Adm_Name").val();
+            $.ajax({
+                url: "http://localhost:55253/API/Nurse/DoctorShow?admId=" + id,
+                type: 'get',
+                success: function (data) {
+                    $('#Adm_Name').empty().append("<option>请选择医生</option>");
+                    $(data).each(function () {
+                        var option = "<option value='" + this.Doc_Id + "'>" + this.Doc_Name + "</option>";
+                        $('#Adm_Name').append(option);
+                    })
+                }
+            })
+        })
+        function UpLogin() {
+            var login = new Object();
+            login.Pat_Id = $("#txtPat_Id").val();
+            login.Reg_Time = $("#txtPat_Id").val();
+            login.Adm_Id = $("#txtAdm_Name").val();
+            login.Doc_Id = $("#txtDoc_Name").val();
+            login.Reg_Type = 0;
+            $.ajax({
+                url: "http://localhost:55253/API/Nurse/PatientLoginAdd?re=" + JSON.stringify(login),
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    if (data > 0) {
+                        alert("挂号成功(#^.^#)");
+                    }
+                    else {
+                        alert("挂号失败o(╥﹏╥)o");
+                    }
+                }
+            })
+        }
     </script>
 </head>
 <body>
+    <div id="LoginBox">
+        <div class="row1">
+            病人查询<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
+        </div>
+        <div class="row">
+            手机号: <span class="inputBox">
+                <input type="text" id="txtPhone" placeholder="病人手机号" />
+            </span><a href="javascript:void(0)" title="提示" class="warning" id="warn">*</a>
+        </div>
+        <div class="row">
+            <a href="#" id="loginbtn" class="close_btn" onclick="AtientQuery()">搜索</a>
+        </div>
+    </div>
     <div id="main_container">
         <div class="header">
             <div id="logo"><a href="~/Nurses/PatientQuery"><img src="~/images/logo.png" alt="" title="" width="162" height="54" border="0" /></a></div>
@@ -119,25 +204,105 @@
             </div>
         </div>
         <div id="middle_box">
-            <a href="#" id="example">查询病人信息</a>
-            @*弹出窗口查找*@
-            <div id="LoginBox">
-                <div class="row1">
-                    病人信息查询<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
-                </div>
-                <div class="row">
-                    名&nbsp;&nbsp;&nbsp;&nbsp;称: <span class="inputBox">
-                        <input type="text" id="txtName" placeholder="病人名称" />
-                    </span><a href="javascript:void(0)" title="提示" class="warning" id="warn">*</a>
-                </div>
-                <div class="row">
-                    手机号: <span class="inputBox">
-                        <input type="text" id="txtPwd" placeholder="病人手机号" />
-                    </span><a href="javascript:void(0)" title="提示" class="warning" id="warn2">*</a>
-                </div>
-                <div class="row">
-                    <a href="#" id="loginbtn">查找</a>
-                </div>
+
+            <a href="#" id="example" onclick="AtientQuery()">查询病人信息</a>
+            <hr />
+            <a href="#" id="example" onclick="UpLogin()">挂 &nbsp;&nbsp; 号</a>
+        </div>
+        <hr />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div id="Pat_middle">
+            <table id="tb1">
+                <tr>
+                    <td>
+                        <div class="row">
+                            病人号码: <span class="inputBox">
+                                <input class="text" type="text" id="txtPat_Id" placeholder="病人名称" />|
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            病人姓名: <span class="inputBox">
+                                <input class="text" type="text" id="txtPat_Name" placeholder="病人名称" />|
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            病人年龄: <span class="inputBox">
+                                <input class="text" type="text" id="txtPat_Age" placeholder="病人年龄" />|
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            病人性别: <span class="inputBox">
+                                <input class="text" type="text" id="txtPat_Sex" placeholder="病人性别" />|
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            联系方式: <span class="inputBox">
+                                <input class="text" type="text" id="txtPat_Phone" placeholder="联系方式" />|
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            身份证号: <span class="inputBox">
+                                <input class="text" type="text" id="txtPat_Sfz" placeholder="联系方式" />|
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            医生科室: <span class="inputBox">
+                                <select id="txtAdm_Name" class="text">
+                                    <option>请选择科室</option>
+                                </select>|
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            医生姓名: <span class="inputBox">
+                                <select id="txtDoc_Name" class="text">
+                                    <option>请选择医生</option>
+                                </select>|
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="row">
+                就诊时间: <span class="inputBox">
+                    <input type="datetime" id="txtReg_Time" placeholder="就诊时间" />|
+                </span>
             </div>
         </div>
     </div>

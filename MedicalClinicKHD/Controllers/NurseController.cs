@@ -8,15 +8,6 @@ namespace MedicalClinicKHD.Controllers
 {
     public class NurseController : Controller
     {
-        // GET: Nurse
-        /// <summary>
-        /// 病人查询
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult PatientQuery()
-        {
-            return View();
-        }
         /// <summary>
         /// 病人挂号
         /// </summary>
