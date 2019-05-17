@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = null;
+}
+@using MedicalClinicKHD.Models;
+@model Patient
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Patient</title>
+    <script src="~/layui-v2.4.5/layui/layui.js"></script>
+    <link href="~/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+    <div> 
+        <table class="layui-table" lay-even lay-skin="nob">
+            <tr>
+                <td>病人姓名</td>
+                <td>@Model.Pat_Name</td>
+            </tr>
+            <tr>
+                <td>年龄</td> 
+                 <td>@Model.Pat_Age</td>
+            </tr>
+            <tr>
+                <td>性别</td>
+                <td>@Model.Pat_Sex</td>
+            </tr>
+            <tr>
+                <td>身份证</td>
+                <td>@Model.Pat_Sfz</td>
+            </tr>
+            <tr>
+                <td>号码</td> 
+                <td>@Model.Pat_Phone</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

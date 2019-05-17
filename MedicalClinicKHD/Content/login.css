@@ -29,9 +29,9 @@ body {
     width: 70%;
     padding: 5px 5px 5px 10px;
     margin: 0 12%;
-    font-size: 14px;
+    font-size: 15px;
     border: 1px solid #d2d2d2;
-    outline: none;
+    
 }
 .login-area .input_on{
     border-color:#00BBFF;
