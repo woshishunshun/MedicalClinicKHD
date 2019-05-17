@@ -140,6 +140,7 @@
     </Compile>
     <Compile Include="Hctp.cs" />
     <Compile Include="Models\Administrative.cs" />
+    <Compile Include="Models\AdministrativeModels.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\Doctorecord.cs" />
     <Compile Include="Models\Drug.cs" />
