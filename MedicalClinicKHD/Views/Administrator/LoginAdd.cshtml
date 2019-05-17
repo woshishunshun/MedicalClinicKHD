@@ -1,0 +1,49 @@
+﻿@using MedicalClinicKHD.Models
+@model StaffLoginModels
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LoginAdd</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+        {
+            <table class="table table-striped">
+                <tr>
+                    <td>用户名称：</td>
+                    <td>@Html.TextBoxFor(model => model.Sl_Name)</td>
+                </tr>
+                <tr>
+                    <td>用户密码：</td>
+                    <td>@Html.PasswordFor(model => model.Sl_Pwd)</td>
+                </tr>
+                <tr>
+                    <td>用户状态：</td>
+                    <td>
+                        @Html.RadioButtonFor(model => model.Sl_Type, "0", new { @checked = true })<span>管理员</span>
+                        @Html.RadioButtonFor(model => model.Sl_Type, "1")<span>医生</span>
+                        @Html.RadioButtonFor(model => model.Sl_Type, "2")<span>护士</span>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td><input id="Submit1" type="submit" value="添加" class="btn btn-primary" /></td>
+                    <td><input id="Submit1" type="submit" value="取消" class="btn btn-danger" /></td>
+                </tr>
+            </table>
+        }
+
+    </div>
+</body>
+</html>

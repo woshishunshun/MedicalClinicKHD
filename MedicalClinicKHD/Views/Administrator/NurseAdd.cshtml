@@ -1,0 +1,59 @@
+﻿@using MedicalClinicKHD.Models
+@model NurseModels
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>添加医生信息</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Content/WdatePicker.js"></script>
+
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+
+        {
+            <table class="table table-striped">
+                <tr>
+                    <td>护士姓名：</td>
+                    <td>@Html.TextBoxFor(model => model.N_Name)</td>
+                </tr>
+                <tr>
+                    <td>护士年龄：</td>
+                    <td>@Html.TextBoxFor(model => model.N_Age)</td>
+                </tr>
+                <tr>
+                    <td>护士性别：</td>
+                    <td>
+                        @Html.RadioButtonFor(model => model.N_Sex, "1", new { @checked = true })<sapn>男</sapn>
+                        @Html.RadioButtonFor(model => model.N_Sex, "0")<span>女</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>入职时间：</td>
+                    <td>@Html.TextBoxFor(model => model.N_Time, new { onclick = "WdatePicker()" })</td>
+                </tr>
+                <tr>
+                    <td>医生状态：</td>
+                    <td>
+                        @Html.RadioButtonFor(model => model.N_Type, "1", new { @checked = true })<sapn>忙</sapn>
+                        @Html.RadioButtonFor(model => model.N_Type, "0")<span>空闲</span>
+                    </td>
+                </tr>
+                <tr>
+                <tr>
+                    <td><input id="Submit1" type="submit" value="添加" class="btn btn-primary" /></td>
+                    <td><input id="Submit1" type="submit" value="取消" class="btn btn-danger" onclick="location.href='/Administrator/NurseShow'" /></td>
+                </tr>
+            </table>
+        }
+    </div>
+</body>
+</html>

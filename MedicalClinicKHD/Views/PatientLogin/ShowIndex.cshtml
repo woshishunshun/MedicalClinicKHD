@@ -38,6 +38,18 @@
                 content: '/PatientLogin/PatientRegisterShow'
             });
         }
+        $(function () {
+        if ("@Session["UserName"].ToString()" == "未登录")
+        {
+           $("#login").text()="登陆";
+            return;
+        }
+        else
+        {
+            $("#login").text("@Session["UserName"].ToString()");
+        }
+        })
+
     </script>
 </head>
 <body>
@@ -48,14 +60,14 @@
             <div class="right_header">
 
                 <div class="top_menu">
-                    <a href="#" class="login" onclick="LoginLayer()">登陆</a>
+                    <a href="#" class="login" onclick="LoginLayer()" id="login">登陆</a>
                     <a href="#" class="sign_up" onclick="RegisterLayer()">注册</a>
                 </div>
 
                 <div id="menu">
                     <ul>
-                        <li><a class="current" href="#" title="">主页</a></li>
-                        <li><a href="#" title="">挂号</a></li>
+                        <li><a class="current" href="/PatientLogin/ShowIndex" title="">主页</a></li>
+                        <li><a href="/Registration/Show" title="">挂号</a></li>
                         <li><a href="#" title="">其他服务</a></li>
                         <li><a href="#" title="">联系我们</a></li>
                     </ul>
