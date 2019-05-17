@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MedicalClinicKHD.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -50,6 +52,16 @@ namespace MedicalClinicKHD.Controllers
         public ActionResult PatientRegisterShow()
         {
             return View();
+        }
+        public ActionResult Patient(int id)
+        {
+            //获取用户信息表数据
+            var list = Hctp.GetApi("get", "Patient/GetPatients");
+            var list1 = JsonConvert.DeserializeObject<List<Patient>>(list).ToList();
+            //筛选
+            var list2 = list1.Where(m => m.Pat_Id == id).FirstOrDefault();
+            return View(list2);
+
         }
     }
 }

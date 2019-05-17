@@ -16,14 +16,13 @@
             <td>@item.Adm_Name</td>
             <td>@item.Doc_Name</td>
             <td>@item.Doc_Age</td>
-            <td>@item.Doc_Sex </td>
+            <td>@(item.Doc_Sex == "1" ? "男" : "女" ) </td>
             <td>@item.Doc_Time</td>
             <td>@(item.Doc_Type == 1 ? "就诊" : "空闲" )</td>
             <td>
-                @Html.ActionLink("删除", "DeleteDoctor", new { id = item.Doc_Id }, new AjaxOptions { Confirm = "确认要删除吗？" })
-                @Html.ActionLink("删除", "UpdateDoctor", new { id = item.Doc_Id }, new AjaxOptions { Confirm = "确认要修改吗？" })
+                @Ajax.ActionLink("删除", "DeleteDoctor", new { id = item.Doc_Id }, new AjaxOptions { Confirm = "确认要删除吗？" })
+                @Html.ActionLink("修改", "EidtorDoctor", new { id = item.Doc_Id })
             </td>
         </tr>
-        <tbody id="tb"></tbody>
     }
 </table>

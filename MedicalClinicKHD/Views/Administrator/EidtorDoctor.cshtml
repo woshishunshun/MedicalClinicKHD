@@ -9,21 +9,24 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>添加医生信息</title>
+    <title>修改医生信息</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Content/WdatePicker.js"></script>
 
 </head>
 <body>
-    <div> 
+    <div>
         @using (Html.BeginForm())
 
         {
         <table class="table table-striped">
             <tr>
+                <td>@Html.HiddenFor(model=>model.Doc_Id)</td>
+            </tr>
+            <tr>
                 <td>所属科室：</td>
-                <td>@Html.DropDownListFor(model=>model.Adm_Id, ViewBag.KS as IEnumerable<SelectListItem>, "请选择")</td>
+                <td>@Html.DropDownListFor(model => model.Adm_Id, ViewBag.KS as IEnumerable<SelectListItem>, "请选择")</td>
             </tr>
             <tr>
                 <td>医生姓名：</td>
@@ -53,11 +56,11 @@
             </tr>
             <tr>
             <tr>
-                <td><input id="Submit1" type="submit" value="添加" class="btn btn-primary" /></td>
-                <td><input id="Submit1" type="submit" value="取消" class="btn btn-danger" onclick="location.href='/Administrator/DoctorShow'"/></td>
+                <td><input id="Submit1" type="submit" value="修改" class="btn btn-primary" /></td>
+                <td><input id="Submit1" type="submit" value="取消" class="btn btn-danger" onclick="location.href='/Administrator/DoctorShow'" /></td>
             </tr>
         </table>
-        }        
+        }
     </div>
 </body>
 </html>
