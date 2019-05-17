@@ -182,6 +182,15 @@
     <Content Include="images\pattern_bg.gif" />
     <Content Include="images\sign_up.gif" />
     <Content Include="Content\style.css" />
+    <Content Include="layer\layer.js" />
+    <Content Include="layer\mobile\layer.js" />
+    <Content Include="layer\mobile\need\layer.css" />
+    <Content Include="layer\theme\default\icon-ext.png" />
+    <Content Include="layer\theme\default\icon.png" />
+    <Content Include="layer\theme\default\layer.css" />
+    <Content Include="layer\theme\default\loading-0.gif" />
+    <Content Include="layer\theme\default\loading-1.gif" />
+    <Content Include="layer\theme\default\loading-2.gif" />
     <Content Include="layui-v2.4.5\layui\css\layui.css" />
     <Content Include="layui-v2.4.5\layui\css\layui.mobile.css" />
     <Content Include="layui-v2.4.5\layui\css\modules\code.css" />
@@ -331,6 +340,9 @@
     <Content Include="Views\Administrator\DoctorAdd.cshtml" />
     <Content Include="Views\Shared\_table.cshtml" />
     <Content Include="Views\Doctor\Registration.cshtml" />
+    <Content Include="Views\PatientLogin\ShowIndex.cshtml" />
+    <Content Include="Views\PatientLogin\PatientRegisterShow.cshtml" />
+    <Content Include="Views\PatientLogin\Patient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
