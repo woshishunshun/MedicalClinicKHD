@@ -11,5 +11,6 @@ namespace MedicalClinicKHD.Models
         public string Sl_Name { get; set; } // 登陆名称
         public string Sl_Pwd { get; set; } // 登陆密码
         public int Sl_Type { get; set; } // 员工类型
+
     }
 }

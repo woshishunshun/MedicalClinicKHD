@@ -1,0 +1,32 @@
+﻿@using MedicalClinicKHD.Models
+@model List<Doctor>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DoctorShow</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+</head>
+<body>
+    <div>
+        @using (Ajax.BeginForm("Cha", new AjaxOptions { UpdateTargetId= "box" }))
+        {
+            <input id="txtname" name="name" type="text" /><input id="Button1" type="submit" value="查询" />
+        }
+        <input id="Button1" type="button" value="添加" style="float:right;margin-right:100px;" onclick="location.href='/Administrator/DoctorAdd'" />
+
+        <div id="box">
+            @Html.Partial("_table")
+        </div>
+
+
+    </div>
+</body>
+</html>
