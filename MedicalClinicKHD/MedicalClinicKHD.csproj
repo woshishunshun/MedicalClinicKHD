@@ -330,10 +330,12 @@
     <Content Include="Views\Administrator\DoctorShow.cshtml" />
     <Content Include="Views\Administrator\DoctorAdd.cshtml" />
     <Content Include="Views\Shared\_table.cshtml" />
+    <Content Include="Views\PatientLogin\PatientRegisterShow.cshtml" />
+    <Content Include="Views\PatientLogin\ShowIndex.cshtml" />
+    <Content Include="Views\Registration\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Registration\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
