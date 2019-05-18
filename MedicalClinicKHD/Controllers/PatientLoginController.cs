@@ -17,6 +17,10 @@ namespace MedicalClinicKHD.Controllers
         /// <returns></returns>
         public ActionResult ShowIndex()
         {
+            if (Session["UserName"] == null)
+            {
+                Session["UserName"] = "未登陆";
+            }
             return View();
         }
         /// <summary>
@@ -33,7 +37,8 @@ namespace MedicalClinicKHD.Controllers
             var i = Hctp.GetApi("get", "PatientLogin/PatientLogin?PatientName=" + title + "&PatientPwd=" + password);
             if (Convert.ToInt32(i) > 0)
             {
-                Response.Write("<script>alert('登陆成功');var index = parent.layer.getFrameIndex(window.name);parent.layer.close(index);location.href='/PatientLogin/ShowIndex'</script>");
+                Session["UserName"] = title;
+                Response.Write("<script>alert('登陆成功');var index = parent.layer.getFrameIndex(window.name);parent.layer.close(index);parent.window.location.href = '/PatientLogin/ShowIndex';</script>");
             }
             else
             {
