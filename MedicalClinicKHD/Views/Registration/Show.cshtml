@@ -10,7 +10,6 @@
     <link href="~/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
     <script src="~/layui-v2.4.5/layui/layui.js"></script>
     <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/layer/layer.js"></script>
     <link href="~/Content/iecss.css" rel="stylesheet" />
     <link href="~/Content/style.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
@@ -24,7 +23,7 @@
             <div class="right_header">
 
                 <div class="top_menu">
-                    <a href="#" class="login" onclick="LoginLayer()">登陆</a>
+                    <a href="#" class="login" onclick="LoginLayer()" id="login">登陆</a>
                     <a href="#" class="sign_up" onclick="RegisterLayer()">注册</a>
                 </div>
 
@@ -55,6 +54,7 @@
                 <li>@DateTime.Now.Month 月 @DateTime.Now.AddDays(5).Day 日 </li>
                 <li>@DateTime.Now.Month 月 @DateTime.Now.AddDays(6).Day 日 </li>
             </ul>
+            @*切换日期标签*@
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
                     <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
@@ -63,9 +63,32 @@
                             <li>13:00-15:00</li>
                             <li>17:30-19:30</li>
                         </ul>
-                        <div class="layui-tab-content" style="height: 100px;">
-                            <div class="layui-tab-item layui-show">内容不一样是要有，因为你可以监听tab事件（阅读下文档就是了）</div>
+                        @*切换时间标签*@
+                        <div class="layui-tab-content" style="height:auto;">
+                            @*早预约*@
+                            <div class="layui-tab-item layui-show">
+                                <form class="layui-form layui-form-pane" action="">
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            @*午预约*@
                             <div class="layui-tab-item">内容2</div>
+                            @*晚预约*@
                             <div class="layui-tab-item">内容3</div>
                         </div>
                     </div>
@@ -90,4 +113,63 @@
             console.log(data);
         });
     });
+
+    $(function () {
+        BindKeShi();
+
+        if ("@Session["UserName"].ToString()" == "未登录")
+        {
+           $("#login").text()="登陆";
+            return;
+        }
+        else
+        {
+            $("#login").text("@Session["UserName"].ToString()");
+        }
+    })
+
+    function BindKeShi() {
+        $.ajax({
+            url: "/Registration/GetAdministrative",
+            dataType: "json",
+            type: "get",
+            success: function (data) {
+                $("#KeShi").empty().append("<option >请选择您需要挂号的科室</option>")
+                $(data).each(function () {
+                    var opin = '<option value="' + this.Adm_Id + '">' + this.Adm_Name + '</option>';
+                    $("#KeShi").append(opin);
+                    layui.use('form', function () {
+                        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+
+                        //……
+                        form.on('select(keshi)', function (data) {
+                            var id = data.value;
+                            $.ajax({
+                                url: "/Registration/GetDoctor?id=" + id,
+                                dataType: "json",
+                                type: "get",
+                                success: function (data) {
+                                    console.log('1');
+                                    $("#YiShi").empty().append("<option >请选择您希望就诊的医师</option>")
+                                    $(data).each(function () {
+                                        console.log('2');
+                                        var opin = '<option value="' + this.Doc_Id + '">' + this.Doc_Name + '</option>';
+                                        $("#YiShi").append(opin);
+                                        //……
+                                        form.render('select');
+
+                                    })
+                                }
+                            })
+                        });
+
+                        //但是，如果你的HTML是动态生成的，自动渲染就会失效
+                        //因此你需要在相应的地方，执行下述方法来手动渲染，跟这类似的还有 element.init();
+                    });
+                })
+            }
+        })
+
+    }
+
 </script>

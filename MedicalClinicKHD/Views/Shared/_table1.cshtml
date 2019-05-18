@@ -1,0 +1,26 @@
+﻿<table class="table table-striped">
+    <tr>
+        <td>护士Id</td>
+        <td>护士名称</td>
+        <td>护士年龄</td>
+        <td>护士性别</td>
+        <td>入职时间</td>
+        <td>护士状态</td>
+        <td>操作</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.N_Id</td>
+            <td>@item.N_Name</td>
+            <td>@item.N_Age</td>
+            <td>@(item.N_Sex == "1" ? "男" : "女" ) </td>
+            <td>@item.N_Time</td>
+            <td>@(item.N_Type == 1 ? "就诊" : "空闲" )</td>
+            <td>
+                @Ajax.ActionLink("删除", "DeleteNurse", new { id = item.N_Id }, new AjaxOptions { Confirm = "确认要删除吗？" })
+                @Html.ActionLink("修改", "EidtorNurse", new { id = item.N_Id })
+            </td>
+        </tr>
+    }
+</table>
