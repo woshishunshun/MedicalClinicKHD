@@ -139,12 +139,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hctp.cs" />
-    <Compile Include="Models\Administrative.cs" />
+    <Compile Include="Models\AdministrativeModel.cs" />
     <Compile Include="Models\AdministrativeModels.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\Doctorecord.cs" />
     <Compile Include="Models\Drug.cs" />
     <Compile Include="Models\Nurse.cs" />
+    <Compile Include="Models\NurseModels.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\PatientLogin.cs" />
     <Compile Include="Models\Registration.cs" />
