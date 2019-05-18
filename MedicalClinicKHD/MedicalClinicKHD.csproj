@@ -132,16 +132,15 @@
     <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NurseController.cs" />
     <Compile Include="Controllers\PatientLoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hctp.cs" />
-    <Compile Include="Models\AdministrativeModels.cs" />
+    <Compile Include="Models\Administrative.cs" />
     <Compile Include="Models\Doctor.cs" />
-    <Compile Include="Models\NurseModels.cs" />
-    <Compile Include="Models\RegistrationModels.cs" />
     <Compile Include="Models\StaffLoginModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -150,7 +149,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\WdatePicker.js" />
+    <Content Include="Content\login.css" />
+    <Content Include="Content\loginDialog.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -293,12 +293,14 @@
     <Content Include="layui-v2.4.5\文档与示例\快速上手.url" />
     <Content Include="layui-v2.4.5\更新日志.url" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.8.3.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -325,13 +327,6 @@
     <Content Include="Views\Administrator\DoctorShow.cshtml" />
     <Content Include="Views\Administrator\DoctorAdd.cshtml" />
     <Content Include="Views\Shared\_table.cshtml" />
-    <Content Include="Views\Administrator\EidtorDoctor.cshtml" />
-    <Content Include="Views\Administrator\LoginAdd.cshtml" />
-    <Content Include="Views\Administrator\Administratorpreants.cshtml" />
-    <Content Include="Views\Administrator\NurseShow.cshtml" />
-    <Content Include="Views\Shared\_table1.cshtml" />
-    <Content Include="Views\Administrator\NurseAdd.cshtml" />
-    <Content Include="Views\Administrator\EidtorNurse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -366,9 +361,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>63725</DevelopmentServerPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:63725/</IISUrl>
+          <IISUrl>http://localhost:50346/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

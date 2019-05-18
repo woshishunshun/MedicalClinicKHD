@@ -35,11 +35,18 @@ namespace MedicalClinicKHD.Controllers
         }
         public ActionResult Registration()
         {
+            var list2 = GetRegistrations();
+            return View(list2);
+        }
+        public List<Registration> GetRegistrations()
+        {
+            //等级医生姓名获取id值
             var i = kc.Value;
+            //查询所有的登陆表信息
             var getDocId = Hctp.GetApi("get", "Doctor/GetLoginTable");
-            var getDocId01 = JsonConvert.DeserializeObject<List<StaffLoginModels>>(getDocId).Where(m => m.Sl_Name == i).FirstOrDefault().Sl_Id;
+            var getDocId01 = JsonConvert.DeserializeObject<List<StaffLogin>>(getDocId).Where(m => m.Sl_Name == i).FirstOrDefault().Sl_Id;
             var list = Hctp.GetApi("get", "Doctor/GetRegistrations");
-            var list1 = JsonConvert.DeserializeObject<List<RegistrationModels>>(list).Where(m => m.Doc_Id == getDocId01).ToList();
+            var list1 = JsonConvert.DeserializeObject<List<Registration>>(list).Where(m => m.Doc_Id == getDocId01).ToList();
             return View(list1);
         }
     }
