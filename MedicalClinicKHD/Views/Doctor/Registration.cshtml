@@ -34,6 +34,17 @@
                 content: '/PatientLogin/Patient?id=' + id
             })
         }
+        function AddDoctorecord(id) {
+            layer.open({
+                type: 2,
+                title: '就诊记录',
+                shadeClose: true,
+                shade: false,
+                maxmin: true, //开启最大化最小化按钮
+                area: ['893px', '600px'],
+                content: '/Doctor/Doctorecord?id=' + id
+            })
+        }
     </script>
 </head>
 <body>
@@ -47,7 +58,7 @@
         </div>
         <div style="height:400px;background-color:#92dafe;margin-bottom:10px;margin-top:10px;">
             <table class="table table-bordered">
-                <tr >
+                <tr>
                     <td>医生</td>
                     <td>科室</td>
                     <td>患者姓名</td>
@@ -67,7 +78,7 @@
                         }
                         @if (i.Reg_Type == 1)
                         {
-                            <td>正在就诊|@Ajax.ActionLink("结束就诊", "Type_change2", new { id = i.Reg_Id }, new AjaxOptions { OnSuccess = "fun" })</td>
+                            <td>正在就诊| <a href="#" onclick="AddDoctorecord(@i.Reg_Id)">结束就诊</a> </td>
                         }
                     </tr>
                 }
