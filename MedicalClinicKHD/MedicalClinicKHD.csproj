@@ -445,6 +445,9 @@
     <Content Include="Views\Administrator\NurseShow.cshtml" />
     <Content Include="Views\Shared\_table1.cshtml" />
     <Content Include="Views\Doctor\Registration.cshtml" />
+    <Content Include="Views\Doctor\AddReturnrecord.cshtml" />
+    <Content Include="Views\Doctor\GetOldRegistration.cshtml" />
+    <Content Include="Views\Doctor\ReturnCode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
