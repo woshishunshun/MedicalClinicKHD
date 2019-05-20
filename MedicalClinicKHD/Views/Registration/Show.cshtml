@@ -29,7 +29,7 @@
 
                 <div id="menu">
                     <ul>
-                        <li><a class="current" href="#" title="">主页</a></li>
+                        <li><a class="current" href="/PatientLogin/ShowIndex" title="">主页</a></li>
                         <li><a href="#" title="">挂号</a></li>
                         <li><a href="#" title="">其他服务</a></li>
                         <li><a href="#" title="">联系我们</a></li>
@@ -67,7 +67,8 @@
                         <div class="layui-tab-content" style="height:auto;">
                             @*早预约*@
                             <div class="layui-tab-item layui-show">
-                                <form class="layui-form layui-form-pane" action="">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
                                     <div class="layui-form-item layui-form-text">
                                         <label class="layui-form-label">请选择科室:</label>
                                         <select id="KeShi" lay-verify="" lay-filter="keshi">
@@ -81,24 +82,652 @@
                                     <div class="layui-form-item layui-form-text">
                                         <label class="layui-form-label">简单病情描述:</label>
                                         <div class="layui-input-block">
-                                            <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
                                         </div>
                                     </div>
-                                </form>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddZao()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             @*午预约*@
-                            <div class="layui-tab-item">内容2</div>
+                            <div class="layui-tab-item">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddZhong()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             @*晚预约*@
-                            <div class="layui-tab-item">内容3</div>
+                            <div class="layui-tab-item">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddWan()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="layui-tab-item">内容2</div>
-                <div class="layui-tab-item">内容3</div>
-                <div class="layui-tab-item">内容4</div>
-                <div class="layui-tab-item">内容5</div>
-                <div class="layui-tab-item">内容6</div>
-                <div class="layui-tab-item">内容7</div>
+                <div class="layui-tab-item">
+                    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">9:00-11:00</li>
+                            <li>13:00-15:00</li>
+                            <li>17:30-19:30</li>
+                        </ul>
+                        @*切换时间标签*@
+                        <div class="layui-tab-content" style="height:auto;">
+                            @*早预约*@
+                            <div class="layui-tab-item layui-show">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddZao()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*午预约*@
+                            <div class="layui-tab-item">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddZhong()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*晚预约*@
+                            <div class="layui-tab-item">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddWan()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">9:00-11:00</li>
+                            <li>13:00-15:00</li>
+                            <li>17:30-19:30</li>
+                        </ul>
+                        @*切换时间标签*@
+                        <div class="layui-tab-content" style="height:auto;">
+                            @*早预约*@
+                            <div class="layui-tab-item layui-show">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddZao()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*午预约*@
+                            <div class="layui-tab-item">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddZhong()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*晚预约*@
+                            <div class="layui-tab-item">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddWan()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">9:00-11:00</li>
+                            <li>13:00-15:00</li>
+                            <li>17:30-19:30</li>
+                        </ul>
+                        @*切换时间标签*@
+                        <div class="layui-tab-content" style="height:auto;">
+                            @*早预约*@
+                            <div class="layui-tab-item layui-show">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddZao()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*午预约*@
+                            <div class="layui-tab-item">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddZhong()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*晚预约*@
+                            <div class="layui-tab-item">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddWan()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">9:00-11:00</li>
+                            <li>13:00-15:00</li>
+                            <li>17:30-19:30</li>
+                        </ul>
+                        @*切换时间标签*@
+                        <div class="layui-tab-content" style="height:auto;">
+                            @*早预约*@
+                            <div class="layui-tab-item layui-show">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddZao()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*午预约*@
+                            <div class="layui-tab-item">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddZhong()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*晚预约*@
+                            <div class="layui-tab-item">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddWan()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">9:00-11:00</li>
+                            <li>13:00-15:00</li>
+                            <li>17:30-19:30</li>
+                        </ul>
+                        @*切换时间标签*@
+                        <div class="layui-tab-content" style="height:auto;">
+                            @*早预约*@
+                            <div class="layui-tab-item layui-show">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddZao()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*午预约*@
+                            <div class="layui-tab-item">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddZhong()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*晚预约*@
+                            <div class="layui-tab-item">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddWan()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">9:00-11:00</li>
+                            <li>13:00-15:00</li>
+                            <li>17:30-19:30</li>
+                        </ul>
+                        @*切换时间标签*@
+                        <div class="layui-tab-content" style="height:auto;">
+                            @*早预约*@
+                            <div class="layui-tab-item layui-show">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddZao()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*午预约*@
+                            <div class="layui-tab-item">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddZhong()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*晚预约*@
+                            <div class="layui-tab-item">
+                                <div class="layui-form layui-form-pane" action="">
+                                    <blockquote class="layui-elem-quote">该时间段剩余可预约人数:@Session["ReNum"] 人</blockquote>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">请选择科室:</label>
+                                        <select id="KeShi" lay-verify="" lay-filter="keshi">
+                                            <option value="">请选择您需要挂号的科室</option>
+                                        </select>
+                                        <label class="layui-form-label">请选择医师:</label>
+                                        <select id="YiShi" lay-verify="" lay-filter="yishi">
+                                            <option value="">请选择您希望就诊的医师</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">简单病情描述:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="smit" onclick="AddWan()">预约挂号</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重置选择</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -117,9 +746,10 @@
     $(function () {
         BindKeShi();
 
-        if ("@Session["UserName"].ToString()" == "未登录")
-        {
-           $("#login").text()="登陆";
+   if ("@Session["UserName"].ToString()" == "未登录")
+   {
+       this.alert('您还没有登录,请登陆后再进行挂号!');
+       this.location.href = '/PatientLogin/ShowIndex';
             return;
         }
         else
@@ -136,7 +766,7 @@
             success: function (data) {
                 $("#KeShi").empty().append("<option >请选择您需要挂号的科室</option>")
                 $(data).each(function () {
-                    var opin = '<option value="' + this.Adm_Id + '">' + this.Adm_Name + '</option>';
+                    var opin = '<option value="' + this.Adm_Id + '" id="keshi" >' + this.Adm_Name + '</option>';
                     $("#KeShi").append(opin);
                     layui.use('form', function () {
                         var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
@@ -149,11 +779,9 @@
                                 dataType: "json",
                                 type: "get",
                                 success: function (data) {
-                                    console.log('1');
                                     $("#YiShi").empty().append("<option >请选择您希望就诊的医师</option>")
                                     $(data).each(function () {
-                                        console.log('2');
-                                        var opin = '<option value="' + this.Doc_Id + '">' + this.Doc_Name + '</option>';
+                                        var opin = '<option value="' + this.Doc_Id + '" id="yishi" >' + this.Doc_Name + '</option>';
                                         $("#YiShi").append(opin);
                                         //……
                                         form.render('select');
@@ -165,11 +793,167 @@
 
                         //但是，如果你的HTML是动态生成的，自动渲染就会失效
                         //因此你需要在相应的地方，执行下述方法来手动渲染，跟这类似的还有 element.init();
+
                     });
                 })
             }
         })
 
     }
+    function AddZao() {
 
+        if (@Session["UserLogId"]!= 0)
+        {
+            var id= @Session["UserLogId"];
+            $.ajax({
+                url: "/Registration/GetPatientInfo?id=" + id,
+                dataType: "json",
+                type: "get",
+                success: function (data) {
+                    if (data == null) {
+
+                        alert('检测到您的个人信息未完善,请先完善个人信息')
+                        location.href = '/Patient/PatientInfo';
+                    }
+                    else {
+                        //预约操作
+                        var num = 10; 
+                        var logid = @Session["UserLogId"];
+                        var ke = $("#keshi").val();
+                        var yi = $("#yishi").val();
+                        var remark = $("#remark").val();
+                        var date = new Date();
+                        //获取当前日期
+                        var nowdate = date.getMonth()+1 + "月" + date.getDate() + "日";
+                        var time = "9:00-11:00";
+                        $.ajax({
+                            url: "http://localhost:55253/api/Appointment/AddAppointment",
+                            type: "post",
+                            data: { PatLog_Id:logid,App_Date: nowdate, App_Time: time, App_Administrative: ke, App_Doctor: yi, App_Remark: remark },
+                            dataType: "json",
+                            success: function (data) {
+                                if (data > 0) {
+
+                                    num = num - 1;
+                                    alert("恭喜你,预约成功");
+                                    location.href = "/PatientLogin/ShowIndex";
+                                }
+                            }
+                        });
+                        //预约操作结束
+                    }
+                }
+            })
+
+        }
+        else {
+
+         alert('您还没有登录,请登陆后再进行挂号!');
+         location.href = '/PatientLogin/ShowIndex';
+        }
+    }
+    function AddZhong() {
+
+        if (@Session["UserLogId"]!= 0)
+        {
+            var id= @Session["UserLogId"];
+            $.ajax({
+                url: "/Registration/GetPatientInfo?id=" + id,
+                dataType: "json",
+                type: "get",
+                success: function (data) {
+                    if (data == null) {
+
+                        alert('检测到您的个人信息未完善,请先完善个人信息')
+                        location.href = '/Patient/PatientInfo';
+                    }
+                    else {
+                        //预约操作
+                        var num = 10; 
+                        var logid = @Session["UserLogId"];
+                        var ke = $("#keshi").val();
+                        var yi = $("#yishi").val();
+                        var remark = $("#remark").val();
+                        var date = new Date();
+                        //获取当前日期
+                        var nowdate = date.getMonth()+1 + "月" + date.getDate() + "日";
+                        var time = "13:00-15:00";
+                        $.ajax({
+                            url: "http://localhost:55253/api/Appointment/AddAppointment",
+                            type: "post",
+                            data: { PatLog_Id:logid,App_Date: nowdate, App_Time: time, App_Administrative: ke, App_Doctor: yi, App_Remark: remark },
+                            dataType: "json",
+                            success: function (data) {
+                                if (data > 0) {
+
+                                    num = num - 1;
+                                    alert("恭喜你,预约成功");
+                                    location.href = "/PatientLogin/ShowIndex";
+                                }
+                            }
+                        });
+                        //预约操作结束
+                    }
+                }
+            })
+
+        }
+        else {
+
+         alert('您还没有登录,请登陆后再进行挂号!');
+         location.href = '/PatientLogin/ShowIndex';
+        }
+    }
+    function AddWan() {
+
+        if (@Session["UserLogId"]!= 0)
+        {
+            var id= @Session["UserLogId"];
+            $.ajax({
+                url: "/Registration/GetPatientInfo?id=" + id,
+                dataType: "json",
+                type: "get",
+                success: function (data) {
+                    if (data == null) {
+
+                        alert('检测到您的个人信息未完善,请先完善个人信息')
+                        location.href = '/Patient/PatientInfo';
+                    }
+                    else {
+                        //预约操作
+                        var num = 10; 
+                        var logid = @Session["UserLogId"];
+                        var ke = $("#keshi").val();
+                        var yi = $("#yishi").val();
+                        var remark = $("#remark").val();
+                        var date = new Date();
+                        //获取当前日期
+                        var nowdate = date.getMonth()+1 + "月" + date.getDate() + "日";
+                        var time = "17:30-19:30";
+                        $.ajax({
+                            url: "http://localhost:55253/api/Appointment/AddAppointment",
+                            type: "post",
+                            data: { PatLog_Id:logid,App_Date: nowdate, App_Time: time, App_Administrative: ke, App_Doctor: yi, App_Remark: remark },
+                            dataType: "json",
+                            success: function (data) {
+                                if (data > 0) {
+
+                                    num = num - 1;
+                                    alert("恭喜你,预约成功");
+                                    location.href = "/PatientLogin/ShowIndex";
+                                }
+                            }
+                        });
+                        //预约操作结束
+                    }
+                }
+            })
+
+        }
+        else {
+
+         alert('您还没有登录,请登陆后再进行挂号!');
+         location.href = '/PatientLogin/ShowIndex';
+        }
+    }
 </script>

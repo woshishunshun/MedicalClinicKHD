@@ -38,11 +38,14 @@ namespace MedicalClinicKHD.Controllers
             if (Convert.ToInt32(i) > 0)
             {
                 Session["UserName"] = title;
-                Response.Write("<script>alert('登陆成功');var index = parent.layer.getFrameIndex(window.name);parent.layer.close(index);parent.window.location.href = '/PatientLogin/ShowIndex';</script>");
+                var table = Hctp.GetApi("get", "PatientLogin/GetPatient");
+                var json = JsonConvert.DeserializeObject<List<PatientLogin>>(table).Where(n => n.PatLog_LogName == title && n.PatLog_LogPwd == password).FirstOrDefault();
+                Session["UserLogId"] = json.PatLog_Id;
+                Response.Write("<script>alert('欢迎您,登陆成功');var index = parent.layer.getFrameIndex(window.name);parent.layer.close(index);parent.window.location.href = '/PatientLogin/ShowIndex';</script>");
             }
             else
             {
-                 Content("失败");
+                Content("失败");
             }
         }
         /// <summary>
