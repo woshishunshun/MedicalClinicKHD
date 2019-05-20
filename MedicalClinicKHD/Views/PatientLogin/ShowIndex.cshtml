@@ -46,7 +46,7 @@
         }
         else
         {
-            $("#login").text("@Session["UserName"].ToString()");
+            $("#login").text(@Session["UserName"].ToString().Length>3?"@Session["UserName"].ToString().Substring(0,3) ..":"@Session["UserName"].ToString()");
         }
         })
 
