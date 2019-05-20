@@ -13,13 +13,16 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
 
     <script src="~/Scripts/jquery-3.3.1.js"></script>
-
+    <link href="~/Content/iecss.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/iecss.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
 </head>
 <body>
-    <div>
+    <div style="height:200px;width:300px; margin:0 auto; background-color:dimgray;margin-top:10%;">
         @using (Html.BeginForm())
         {
-            <table class="table table-striped">
+            <table class="table table-bordered" style="margin-top:5%;color:Highlight">
                 <tr>
                     <td>用户名称：</td>
                     <td>@Html.TextBoxFor(model => model.Sl_Name)</td>
@@ -38,8 +41,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><input id="Submit1" type="submit" value="添加" class="btn btn-primary" /></td>
-                    <td><input id="Submit1" type="submit" value="取消" class="btn btn-danger" /></td>
+                    <td></td>
+                    <td><input id="Submit1" type="submit" value="添加" class="btn btn-primary" /><input id="Submit1" type="submit" value="取消" class="btn btn-danger" /></td>
                 </tr>
             </table>
         }

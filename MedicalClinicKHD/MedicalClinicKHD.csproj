@@ -46,6 +46,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>F:\11月份\文件上传\WebApplication1\bin\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>F:\11月份\文件上传\WebApplication1\bin\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -133,13 +141,14 @@
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NurseController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\PatientLoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hctp.cs" />
-    <Compile Include="Models\AdministrativeModel.cs" />
+    <Compile Include="Models\Administrative.cs" />
     <Compile Include="Models\AdministrativeModels.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\Doctorecord.cs" />
@@ -149,7 +158,9 @@
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\PatientLogin.cs" />
     <Compile Include="Models\Registration.cs" />
+    <Compile Include="Models\RegistrationModels.cs" />
     <Compile Include="Models\Returnrecord.cs" />
+    <Compile Include="Models\StaffLogin.cs" />
     <Compile Include="Models\StaffLoginModels.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
@@ -229,6 +240,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.dll" />
+    <Content Include="Content\PagedList.Mvc.dll" />
     <Content Include="Content\WdatePicker.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -441,6 +454,7 @@
     <Content Include="Views\Administrator\NurseShow.cshtml" />
     <Content Include="Views\Shared\_table1.cshtml" />
     <Content Include="Views\Doctor\Registration.cshtml" />
+    <Content Include="Views\Patient\PatientInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

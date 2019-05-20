@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MedicalClinicKHD.Models;
 using Newtonsoft.Json;
-
+using PagedList;
 namespace MedicalClinicKHD.Controllers
 {
     public class AdministratorController : Controller
@@ -106,11 +106,14 @@ namespace MedicalClinicKHD.Controllers
         /// <param name="Name"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult DoctorShow(string Name = "")
+        public ActionResult DoctorShow(string Name = "",int pageIndex=1)
         {
             string list = Hctp.GetApi("get", "Administrator/doctorsShow" + Name, null);
             var result = JsonConvert.DeserializeObject<List<Doctor>>(list);
-            return View(result);
+            int pageSize = 3;
+            int count = result.Count();
+            IPagedList<Doctor> pageList = result.ToPagedList(pageIndex, pageSize);
+            return View(pageList);
         }
         /// <summary>
         /// 医生添加绑定下拉
@@ -238,11 +241,14 @@ namespace MedicalClinicKHD.Controllers
         /// <param name="Name"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult NurseShow(string Name = "")
+        public ActionResult NurseShow(string Name = "",int pageIndex=1)
         {
             string list = Hctp.GetApi("get", "Administrator/NurseShow" + Name, null);
             var result = JsonConvert.DeserializeObject<List<NurseModels>>(list);
-            return View(result);
+            int pageSize = 3;
+            int count = result.Count();
+            IPagedList<NurseModels> pageList = result.ToPagedList(pageIndex, pageSize);
+            return View(pageList);
         }
         /// <summary>
         /// 护士添加
