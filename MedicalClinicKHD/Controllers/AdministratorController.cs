@@ -239,6 +239,7 @@ namespace MedicalClinicKHD.Controllers
             var name = Session["name"].ToString();
             var getstaff = Hctp.GetApi("get", "Administrator/Login");
             var getstaff1 = JsonConvert.DeserializeObject<List<StaffLoginModels>>(getstaff).Where(m => m.Sl_Name == name).FirstOrDefault().Sl_Id;
+            n.Sl_Id = getstaff1;
 
 
             var list = Hctp.GetApi("post", "Administrator/NurseAdd", n);
