@@ -18,21 +18,21 @@
     <div>
         @using (Html.BeginForm())
         {
-            <table>
+            <table class="table table-striped">
                 <tr>
                     <td>用户名：</td>
                     <td>@Html.TextBoxFor(model => model.Sl_Name)</td>
                 </tr>
                 <tr>
                     <td>用户密码：</td>
-                    <td>@Html.TextBoxFor(model => model.Sl_Pwd)</td>
+                    <td>@Html.PasswordFor(model => model.Sl_Pwd)</td>
                 </tr>
                 <tr>
                     <td>@Html.HiddenFor(model=>model.Sl_Type)</td>
                 </tr>
                 <tr>
                     <td>
-                        <input id="Submit1" type="submit" value="登录" class="alert-success" />
+                        <input id="Submit1" type="submit" value="登录" class="btn btn-primary"  />
                     </td>
                 </tr>
             </table>
@@ -42,20 +42,6 @@
 </body>
 </html>
 <script>
-    function fun() {
-        var type = $("Sl_Type").val();
-        //跳转管理员界面
-        if (type == 0) {
-            location.href = "/Administrator/Administratorpreants";
-        }
-        //跳转医生界面
-        else if (type==1) {
-            location.href="/Administator/"
-        }
-         //跳转护士界面
-        else if (type==2) {
-            location.href="/Administrator/"
-        }
-    }
+    
 
 </script>
