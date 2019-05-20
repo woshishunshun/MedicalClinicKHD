@@ -13,6 +13,5 @@ namespace MedicalClinicKHD.Models
         public string N_Sex { get; set; }
         public string N_Time { get; set; }
         public int N_Type { get; set; }
-
     }
 }

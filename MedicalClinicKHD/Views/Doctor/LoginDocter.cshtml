@@ -28,28 +28,28 @@
                 <span style="float:right;text-align:center;margin-left:230px;margin-bottom:5px;padding-top:10px;font-size:20px;">医生登录</span>
             </div>
         </div>
-        @using (Ajax.BeginForm("LoginDoctor",new AjaxOptions { OnSuccess="fun" }))
+        @using (Ajax.BeginForm("LoginDoctor", new AjaxOptions { OnSuccess = "fun" }))
         {
-        <div style="height:400px;background-color:#92dafe;margin-bottom:10px;margin-top:10px;">
-            <div style="margin:0 auto;height:200px;width:400px;padding-top:120px;">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">输入框</label>
-                    <div class="layui-input-inline">
-                        <input id="name" type="text" name="title" required lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+            <div style="height:400px;background-color:#92dafe;margin-bottom:10px;margin-top:10px;">
+                <div style="margin:0 auto;height:200px;width:400px;padding-top:120px;">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">输入框</label>
+                        <div class="layui-input-inline">
+                            <input id="name" type="text" name="title" required lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                        </div>
                     </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">密码框</label>
-                    <div class="layui-input-inline">
-                        <input id="pwd" type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">密码框</label>
+                        <div class="layui-input-inline">
+                            <input id="pwd" type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                        </div>
                     </div>
-                </div>
-                <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
                 </div>
             </div>
-        </div>
         }
         <div id="middle_box">
             <div class="middle_box_content"><img src="~/images/banner_content.jpg" alt="" title="" /></div>
