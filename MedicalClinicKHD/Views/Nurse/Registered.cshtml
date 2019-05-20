@@ -100,7 +100,28 @@
         });
 
 
-        //绑定一级下拉列表
+        //查询病人信息
+        function AtientQuery() {
+            var phone = $("#txtPhone").val();
+            $.ajax({
+                url: "http://localhost:55253/API/Nurse/PatientShow?phone=" + phone,
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    if (data > 0) {
+                        $("#txtPat_Id").val() = this.Pat_Id
+                        $("#txtPat_Name").val() = this.Pat_Name
+                        $("#txtPat_Sex").val() = this.Pat_Sex
+                        $("#txtPat_Age").val() = this.Pat_Age
+                        $("#txtPat_Phone").val() = this.Pat_Phone
+                        $("#txtPat_Sfz").val() = this.Pat_Sfz
+                    }
+                    else {
+                        alert("查无此人");
+                    }
+                }
+            })
+        }
         $(function () {
             $.ajax({
                 url: "http://localhost:55253/API/Nurse/AdministrativeShow",
@@ -112,62 +133,31 @@
                 }
             })
         })
-        //绑定二级下拉列表
-        function Docoter() {
-            var id = $("#txtAdm_Name").val();
+        $("#Adm_Name").change(function () {
+            var id = $("#Adm_Name").val();
             $.ajax({
                 url: "http://localhost:55253/API/Nurse/DoctorShow?admId=" + id,
                 type: 'get',
                 success: function (data) {
-                    $('#txtDoc_Name').empty().append("<option>请选择医生</option>");
+                    $('#Adm_Name').empty().append("<option>请选择医生</option>");
                     $(data).each(function () {
                         var option = "<option value='" + this.Doc_Id + "'>" + this.Doc_Name + "</option>";
-                        $('#txtDoc_Name').append(option);
+                        $('#Adm_Name').append(option);
                     })
                 }
             })
-        }
-        //查询病人信息
-        function AtientQuery() {
-            
-            var phone = $("#txtPhone").val();
-            $.ajax({
-                url: "http://localhost:55253/API/Nurse/PatientShow?phone=" + phone,
-                type: "get",
-                dataType: "json",
-                success: function (data) {
-                    $(data).each(function () {
-                        if (data != null) {
-                            $("#txtPat_Id").val(this.Pat_Id)
-                            $("#txtPat_Name").val(this.Pat_Name)
-                            $("#txtPat_Sex").val(this.Pat_Sex)
-                            $("#txtPat_Age").val(this.Pat_Age)
-                            $("#txtPat_Phone").val(this.Pat_Phone)
-                            $("#txtPat_Sfz").val(this.Pat_Sfz)
-                        }
-                        else {
-                            alert("查无此人");
-                        }
-                    })
-                }
-            })
-        }
-        //挂号
+        })
         function UpLogin() {
-
-            var data = new Date();
-            var Year = data.getFullYear();
-            var Month = data.getMonth() + 1;
-            var Day = data.getDate();
-            var Pat_Id = $("#txtPat_Id").val();
-            var Reg_Time = Year + "-" + Month + "-" + Day;
-            var Adm_Id = $("#txtAdm_Name").val();
-            var Doc_Id = $("#txtDoc_Name").val();
-            var Reg_Type = 0;
+            var login = new Object();
+            login.Pat_Id = $("#txtPat_Id").val();
+            login.Reg_Time = $("#txtPat_Id").val();
+            login.Adm_Id = $("#txtAdm_Name").val();
+            login.Doc_Id = $("#txtDoc_Name").val();
+            login.Reg_Type = 0;
             $.ajax({
-                url: "http://localhost:55253/API/Nurse/PatientLoginAdd",
+                url: "http://localhost:55253/API/Nurse/PatientLoginAdd?re=" + JSON.stringify(login),
                 type: "post",
-                data: { 'Pat_Id': Pat_Id, 'Reg_Time': Reg_Time, 'Adm_Id': Adm_Id, 'Doc_Id': Doc_Id, 'Reg_Type': Reg_Type },
+                dataType: "json",
                 success: function (data) {
                     if (data > 0) {
                         alert("挂号成功(#^.^#)");
@@ -188,10 +178,10 @@
         <div class="row">
             手机号: <span class="inputBox">
                 <input type="text" id="txtPhone" placeholder="病人手机号" />
-            </span>
+            </span><a href="javascript:void(0)" title="提示" class="warning" id="warn">*</a>
         </div>
         <div class="row">
-            <a href="#" id="loginbtn" onclick="AtientQuery()">搜索</a>
+            <a href="#" id="loginbtn" class="close_btn" onclick="AtientQuery()">搜索</a>
         </div>
     </div>
     <div id="main_container">
@@ -215,7 +205,7 @@
         </div>
         <div id="middle_box">
 
-            <a href="#" id="example">查询病人信息</a>
+            <a href="#" id="example" onclick="AtientQuery()">查询病人信息</a>
             <hr />
             <a href="#" id="example" onclick="UpLogin()">挂 &nbsp;&nbsp; 号</a>
         </div>
@@ -292,7 +282,7 @@
                     <td>
                         <div class="row">
                             医生科室: <span class="inputBox">
-                                <select id="txtAdm_Name" class="text" onchange="Docoter()">
+                                <select id="txtAdm_Name" class="text">
                                     <option>请选择科室</option>
                                 </select>|
                             </span>
@@ -309,6 +299,11 @@
                     </td>
                 </tr>
             </table>
+            <div class="row">
+                就诊时间: <span class="inputBox">
+                    <input type="datetime" id="txtReg_Time" placeholder="就诊时间" />|
+                </span>
+            </div>
         </div>
     </div>
 </body>

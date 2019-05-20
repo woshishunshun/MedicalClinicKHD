@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MedicalClinicKHD.Models
 {
-    public class AdministrativeModel
+    public class Administrative
     {
         public int Adm_Id { get; set; } //科室表Id
         public  string  Adm_Name { get; set; } //科室名称
