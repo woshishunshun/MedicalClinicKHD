@@ -20,7 +20,7 @@ namespace MedicalClinicKHD.Controllers
         /// 护士
         /// </summary>
         /// <returns></returns>
-        public ActionResult Login()
+        public ActionResult NurseLogin()
         {
             return View();
         }

@@ -145,10 +145,13 @@
     <Compile Include="Models\Doctorecord.cs" />
     <Compile Include="Models\Drug.cs" />
     <Compile Include="Models\Nurse.cs" />
+    <Compile Include="Models\NurseModels.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\PatientLogin.cs" />
     <Compile Include="Models\Registration.cs" />
+    <Compile Include="Models\RegistrationModels.cs" />
     <Compile Include="Models\Returnrecord.cs" />
+    <Compile Include="Models\StaffLogin.cs" />
     <Compile Include="Models\StaffLoginModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -157,6 +160,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\login.css" />
+    <Content Include="Content\loginDialog.css" />
     <Content Include="Content\WdatePicker.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -335,7 +340,7 @@
     <Content Include="Views\PatientLogin\PatientRegisterShow.cshtml" />
     <Content Include="Views\PatientLogin\ShowIndex.cshtml" />
     <Content Include="Views\Registration\Show.cshtml" />
-    <Content Include="Views\Nurse\Login.cshtml" />
+    <Content Include="Views\Nurse\NurseLogin.cshtml" />
     <Content Include="Views\Nurse\Registered.cshtml" />
   </ItemGroup>
   <ItemGroup>
