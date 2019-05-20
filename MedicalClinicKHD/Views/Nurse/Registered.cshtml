@@ -101,6 +101,7 @@
             });
         });
 
+
         //绑定一级下拉列表
         $(function () {
             $.ajax({
@@ -114,7 +115,7 @@
             })
         })
         //绑定二级下拉列表
-        function ChangeDoc() {
+        function Docoter() {
             var id = $("#txtAdm_Name").val();
             $.ajax({
                 url: "http://localhost:55253/API/Nurse/DoctorShow?admId=" + id,
@@ -130,39 +131,45 @@
         }
         //查询病人信息
         function AtientQuery() {
+            
             var phone = $("#txtPhone").val();
             $.ajax({
                 url: "http://localhost:55253/API/Nurse/PatientShow?phone=" + phone,
                 type: "get",
                 dataType: "json",
                 success: function (data) {
-                    if (data > 0) {
-                        $("#txtPat_Id").val(this.Pat_Id);
-                        $("#txtPat_Name").val(this.Pat_Name);
-                        $("#txtPat_Sex").val(this.Pat_Sex);
-                        $("#txtPat_Age").val(this.Pat_Age);
-                        $("#txtPat_Phone").val(this.Pat_Phone);
-                        $("#txtPat_Sfz").val(this.Pat_Sfz);
-                    }
-                    else {
-                        alert("查无此人");
-                    }
+                    $(data).each(function () {
+                        if (data != null) {
+                            $("#txtPat_Id").val(this.Pat_Id)
+                            $("#txtPat_Name").val(this.Pat_Name)
+                            $("#txtPat_Sex").val(this.Pat_Sex)
+                            $("#txtPat_Age").val(this.Pat_Age)
+                            $("#txtPat_Phone").val(this.Pat_Phone)
+                            $("#txtPat_Sfz").val(this.Pat_Sfz)
+                        }
+                        else {
+                            alert("查无此人");
+                        }
+                    })
                 }
             })
         }
+        //挂号
         function UpLogin() {
-            
 
+            var data = new Date();
+            var Year = data.getFullYear();
+            var Month = data.getMonth() + 1;
+            var Day = data.getDate();
             var Pat_Id = $("#txtPat_Id").val();
-            var Reg_Time = new Date().getFullYear() + "年" + new Date().getMonth() + "月" + new Date().getDate() + "日" + new Date().getHours() + "时" + new Date().getMinutes() + "分";
+            var Reg_Time = Year + "-" + Month + "-" + Day;
             var Adm_Id = $("#txtAdm_Name").val();
             var Doc_Id = $("#txtDoc_Name").val();
             var Reg_Type = 0;
             $.ajax({
                 url: "http://localhost:55253/API/Nurse/PatientLoginAdd",
                 type: "post",
-                dataType: "json",
-                data: { "Pat_Id": Pat_Id, "Reg_Time": Reg_Time, "Adm_Id": Adm_Id, "Doc_Id": Doc_Id, "Reg_Type": Reg_Type},
+                data: { 'Pat_Id': Pat_Id, 'Reg_Time': Reg_Time, 'Adm_Id': Adm_Id, 'Doc_Id': Doc_Id, 'Reg_Type': Reg_Type },
                 success: function (data) {
                     if (data > 0) {
                         alert("挂号成功(#^.^#)");
@@ -194,7 +201,7 @@
             <div id="logo"><a href="~/Nurses/PatientQuery"><img src="~/images/logo.png" alt="" title="" width="162" height="54" border="0" /></a></div>
             <div class="right_header">
                 <div class="top_menu">
-                    <a href="~/Nurse/NurseLogin" class="login" onclick="LoginLayer()">登陆</a>
+                    <a href="~/Nurse/Login" class="login" onclick="LoginLayer()">登陆</a>
                     <a href="#" class="sign_up" onclick="RegisterLayer()">注册</a>
                 </div>
                 @*导航栏*@
@@ -210,7 +217,7 @@
         </div>
         <div id="middle_box">
 
-            <a href="#" id="example" >查询病人信息</a>
+            <a href="#" id="example">查询病人信息</a>
             <hr />
             <a href="#" id="example" style="float:left;margin-left:60px;border:1px solid;" onclick="UpLogin()">手动挂号</a>
             <a href="#" id="example" style="margin-left:0px;border:1px solid" onclick="">预约查询</a>
@@ -262,7 +269,7 @@
                     <td>
                         <div class="row">
                             身份证号: <span class="inputBox">
-                                <input class="text" type="text" id="txtPat_Sfz" placeholder="身份证号" />|
+                                <input class="text" type="text" id="txtPat_Sfz" placeholder="联系方式" />|
                             </span>
                         </div>
                     </td>
@@ -271,7 +278,7 @@
                     <td>
                         <div class="row">
                             医生科室: <span class="inputBox">
-                                <select id="txtAdm_Name" class="text" onchange="ChangeDoc()">
+                                <select id="txtAdm_Name" class="text" onchange="Docoter()">
                                     <option>请选择科室</option>
                                 </select>|
                             </span>
