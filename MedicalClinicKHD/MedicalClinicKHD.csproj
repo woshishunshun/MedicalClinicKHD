@@ -133,13 +133,13 @@
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NurseController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\PatientLoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hctp.cs" />
-    <Compile Include="Models\AdministrativeModel.cs" />
     <Compile Include="Models\AdministrativeModels.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\Doctorecord.cs" />
@@ -445,6 +445,7 @@
     <Content Include="Views\Administrator\NurseShow.cshtml" />
     <Content Include="Views\Shared\_table1.cshtml" />
     <Content Include="Views\Doctor\Registration.cshtml" />
+    <Content Include="Views\Patient\PatientInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
