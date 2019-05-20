@@ -35,6 +35,7 @@
 
 
     </div>
+    @* 分页 *@
     每页 @Model.PageSize 条记录, 共 @Model.PageCount 页, 当前第 @Model.PageNumber 页
     @Html.PagedListPager(Model,pageIndex=>Url.Action("DoctorShow", new { pageIndex}),
         new PagedListRenderOptions
