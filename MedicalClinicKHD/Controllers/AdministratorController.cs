@@ -65,35 +65,12 @@ namespace MedicalClinicKHD.Controllers
         /// <param name="staff"></param>
         public void Login(StaffLoginModels staff)
         {
-            int n = 0;
             var list = Hctp.GetApi("get", "Administrator/Login", null);
             var list1 = JsonConvert.DeserializeObject<List<StaffLoginModels>>(list);
             var i = list1.Where(m => m.Sl_Name == staff.Sl_Name && m.Sl_Pwd == staff.Sl_Pwd).Count();
-            var i1 = list1.Where(m => m.Sl_Name == staff.Sl_Name && m.Sl_Pwd == staff.Sl_Pwd).ToList();
-            foreach (var m in i1)
-            {
-                n = m.Sl_Type;
-            }
             if (i > 0)
             {
-                Response.Write("<script>alert('添加成功');</script>");
-                //跳转管理员界面
-                if (n == 0)
-                {
-                    Response.Write("<script>location.href = '/Administrator/Administratorpreants';</script>");
-
-                }
-                //跳转医生界面
-                else if (n == 1)
-                {
-                    Response.Write("<script>location.href = '/Administrator/DoctorShow';</script>");
-
-                }
-                //跳转护士界面
-                else if (n == 2)
-                {
-                    Response.Write("<script>location.href = '/Administrator/NurseShow';</script>");
-                }
+                Response.Write("<scirpt>alert('登录成功');</script>");
             }
             else
             {
@@ -305,7 +282,7 @@ namespace MedicalClinicKHD.Controllers
         {
             string list = Hctp.GetApi("get", "Administrator/NurseShow?Name=" + name, null);
             var result = JsonConvert.DeserializeObject<List<NurseModels>>(list);
-            return PartialView("_table1", result);
+            return PartialView("_table", result);
         }
         /// <summary>
         /// 医生反填
