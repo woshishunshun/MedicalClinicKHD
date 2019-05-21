@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using MedicalClinicKHD.Models;
+using PagedList.Mvc;
+using PagedList;
 
 namespace MedicalClinicKHD.Controllers
 {
@@ -33,10 +35,10 @@ namespace MedicalClinicKHD.Controllers
                 return Content("失败");
             }
         }
-        public ActionResult Registration()
+        public ActionResult Registration(int pageIndex=1)
         {
             var list2 = GetRegistrations();
-            return View(list2);
+            return View(list2.ToPagedList(pageIndex,5));
         }
         public List<Registration> GetRegistrations()
         {
@@ -121,7 +123,7 @@ namespace MedicalClinicKHD.Controllers
             }
 
         }
-        public ActionResult GetOldRegistration()
+        public ActionResult GetOldRegistration(int pageIndex = 1)
         {
             var id = GetDocId();
             //获取挂号表的数据
@@ -132,7 +134,7 @@ namespace MedicalClinicKHD.Controllers
             var list1 = JsonConvert.DeserializeObject<List<Registration>>(list).Where(m => m.Doc_Id == id).ToList();
             var list2 = list1.Where(m => m.Reg_Type == 2 || m.Reg_Type == 3).ToList();
             //查询当天的就诊信息
-            return View(list1);
+            return View(list1.ToPagedList(pageIndex,5));
         }
         public ActionResult AddReturnrecord()
         {
