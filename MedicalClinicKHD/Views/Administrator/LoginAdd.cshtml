@@ -42,11 +42,16 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input id="Submit1" type="submit" value="添加" class="btn btn-primary" /><input id="Submit1" type="submit" value="取消" class="btn btn-danger" /></td>
+                    <td><input id="Submit1" type="submit" value="添加" class="btn btn-primary;" /><input id="Submit1" type="submit" value="取消" class="btn btn-danger" onclick="fun1()" /></td>
                 </tr>
             </table>
         }
-
+        
     </div>
 </body>
 </html>
+<script>
+    function fun1() {
+        location.href = '/Administrator/Login';
+    }
+</script>

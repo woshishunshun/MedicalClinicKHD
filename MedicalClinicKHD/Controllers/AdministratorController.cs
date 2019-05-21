@@ -27,12 +27,24 @@ namespace MedicalClinicKHD.Controllers
         /// <param name="staff"></param>
         public void LoginAdd(StaffLoginModels staff)
         {
-            string json = JsonConvert.SerializeObject(staff);
+            int v = 0;
             string list = Hctp.GetApi("post", "Administrator/LoginAdd", staff);
             if (list=="1")
             {
                 Session["name"] = staff.Sl_Name;
-                Response.Write("<script>alert('添加成功');location.href='/Administrator/Login'</script>");
+                Response.Write("<script>alert('添加成功');</script>");
+                if (staff.Sl_Type == 0)
+                {
+                    Response.Write("<script>location.href='/Administrator/Administratorpreants'</script>");
+                }
+                else if (staff.Sl_Type == 1)
+                {
+                    Response.Write("<script>location.href='/Administrator/DoctorAdd'</script>");
+                }
+                else if (staff.Sl_Type == 2)
+                {
+                    Response.Write("<script>location.href='/Administrator/NurseAdd'</script>");
+                }
             }
             else
             {
@@ -68,9 +80,23 @@ namespace MedicalClinicKHD.Controllers
             var list = Hctp.GetApi("get", "Administrator/Login", null);
             var list1 = JsonConvert.DeserializeObject<List<StaffLoginModels>>(list);
             var i = list1.Where(m => m.Sl_Name == staff.Sl_Name && m.Sl_Pwd == staff.Sl_Pwd).Count();
+            var list2 = list1.Where(m => m.Sl_Name == staff.Sl_Name && m.Sl_Pwd == staff.Sl_Pwd).FirstOrDefault();
+
             if (i > 0)
             {
-                Response.Write("<scirpt>alert('登录成功');</script>");
+                Response.Write("<script>alert('登录成功');</script>");
+                if (list2.Sl_Type == 0)
+                {
+                    Response.Write("<script>location.href='/Administrator/Administratorpreants'</script>");
+                }
+                else if (list2.Sl_Type==1)
+                {
+                    Response.Write("<script>location.href='/Administrator/DoctorShow'</script>");
+                }
+                else if (list2.Sl_Type == 2)
+                { 
+                    Response.Write("<script>location.href='/Administrator/NurseShow'</script>");
+                }
             }
             else
             {
@@ -125,7 +151,7 @@ namespace MedicalClinicKHD.Controllers
             var list = Hctp.GetApi("post", "Administrator/DoctorAdd", d);
             if (list == "1")
             {
-                Response.Write("<script>alert('添加成功');location.href='/Administrator/DoctorShow';</script>");
+                Response.Write("<script>alert('添加成功');location.href='/Administrator/Login';</script>");
             }
             else
             {
@@ -249,7 +275,7 @@ namespace MedicalClinicKHD.Controllers
             var list = Hctp.GetApi("post", "Administrator/NurseAdd", n);
             if (list == "1")
             {
-                Response.Write("<script>alert('添加成功');location.href='/Administrator/NurseShow';</script>");
+                Response.Write("<script>alert('添加成功');location.href='/Administrator/Login';</script>");
             }
             else
             {
