@@ -1,8 +1,10 @@
 ﻿@{
     Layout = null;
 }
-@using MedicalClinicKHD.Models;
-@model List<Registration>
+@using PagedList;
+@using PagedList.Mvc;
+@using MedicalClinicKHD.Models
+@model PagedList<Registration>
 <!DOCTYPE html>
 
 <html>
@@ -15,6 +17,7 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/iecss.css" rel="stylesheet" />
     <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <title>MedicalClinic</title>
     <script>
@@ -34,7 +37,7 @@
                 content: '/PatientLogin/Patient?id=' + id
             })
         }
-        function AddDoctorecord(id) {
+        function AddDoctorecord(id, id1) {
             layer.open({
                 type: 2,
                 title: '就诊记录',
@@ -42,7 +45,7 @@
                 shade: false,
                 maxmin: true, //开启最大化最小化按钮
                 area: ['893px', '600px'],
-                content: '/Doctor/Doctorecord?id=' + id+"&id1=" + id1
+                content: '/Doctor/Doctorecord?id=' + id + "&id1=" + id1
             })
         }
     </script>
@@ -55,8 +58,9 @@
                 <a href="index.html"><img src="~/images/logo.png" alt="" title="" width="162" height="54" border="0" /></a>
                 <span style="float:right;text-align:center;margin-left:230px;margin-bottom:5px;padding-top:10px;font-size:20px;">就诊界面</span>
             </div>
-            <div style="margin-left:780px;height:30px;width:120px;padding-top:10px"><a href='/Doctor/GetOldRegistration'>已就诊完</a>
-               <a href='/Doctor/ReturnCode'>回访记录</a>
+            <div style="margin-left:780px;height:30px;width:120px;padding-top:10px">
+                <a href='/Doctor/GetOldRegistration'>已就诊完</a>
+                <a href='/Doctor/ReturnCode'>回访记录</a>
             </div>
         </div>
         <div style="height:400px;background-color:#92dafe;margin-bottom:10px;margin-top:10px;">
@@ -86,7 +90,20 @@
                     </tr>
                 }
             </table>
+            每页 @Model.PageSize 条记录，共 @Model.PageCount 页，当前第 @Model.PageNumber 页
+            @Html.PagedListPager(Model,pageIndex=>Url.Action("Index",new { pageIndex }),
+            new PagedListRenderOptions
+            {
+                LinkToFirstPageFormat="首页",
+                LinkToNextPageFormat="下一页",
+                LinkToPreviousPageFormat="上一页",
+                LinkToLastPageFormat="末页",
+                MaximumPageNumbersToDisplay=5,
+                DisplayItemSliceAndTotal = false
+            }
+           )
         </div>
+        
         <div id="middle_box">
             <div class="middle_box_content"><img src="~/images/banner_content.jpg" alt="" title="" /></div>
         </div>

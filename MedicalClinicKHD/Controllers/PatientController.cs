@@ -12,6 +12,10 @@ namespace MedicalClinicKHD.Controllers
         // GET: Patient
         public ActionResult PatientInfo()
         {
+            if (Session["UserLogId"] == null)
+            {
+                Session["UserLogId"] = 0;
+            }
             return View();
         }
     }

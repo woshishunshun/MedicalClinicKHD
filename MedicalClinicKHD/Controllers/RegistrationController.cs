@@ -17,6 +17,18 @@ namespace MedicalClinicKHD.Controllers
         /// <returns></returns>
         public ActionResult Show()
         {
+            if (Session["UserName"] == null)
+            {
+                Session["UserName"] = "未登陆";
+            }
+            if (Session["UserLogId"]==null)
+            {
+                Session["UserLogId"] = 0;
+            }
+            if (Session["ReNum"]==null)
+            {
+                Session["ReNum"] = 10;
+            }
             return View();
         }
         /// <summary>
@@ -36,6 +48,18 @@ namespace MedicalClinicKHD.Controllers
         {
             var list = Hctp.GetApi("get", "Administrative/ShowDoctor?id="+id);
             return JsonConvert.SerializeObject(JsonConvert.DeserializeObject<List<Doctor>>(list));
+        }
+        /// <summary>
+        /// 查询病人个人信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string GetPatientInfo(int id)
+        {
+            var info = Hctp.GetApi("get", "Patient/GetPatients");
+            var user = JsonConvert.DeserializeObject<List<Patient>>(info).Where(n => n.PatLog_Id == id).FirstOrDefault();
+            var json = JsonConvert.SerializeObject(user);
+            return json;
         }
     }
 }
