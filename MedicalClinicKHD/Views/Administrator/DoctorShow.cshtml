@@ -1,5 +1,7 @@
-﻿@using MedicalClinicKHD.Models
-@model List<Doctor>
+﻿
+@using MedicalClinicKHD.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<Doctor>
 @{
     Layout = null;
 }
@@ -13,14 +15,19 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <link href="~/Content/iecss.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+
+
 </head>
 <body>
     <div>
-        @using (Ajax.BeginForm("Cha", new AjaxOptions { UpdateTargetId= "box" }))
+
+        @using (Ajax.BeginForm("Cha", new AjaxOptions { UpdateTargetId = "box" }))
         {
-            <input id="txtname" name="name" type="text" /><input id="Button1" type="submit" value="查询" />
+            <input id="txtname" name="name" type="text" style="height:50px;" /><input id="example" style="opacity: 0.6; float:left" class="btn btn-primary" type="submit" value="查询" />
         }
-        <input id="Button1" type="button" value="添加" style="float:right;margin-right:100px;" onclick="location.href='/Administrator/DoctorAdd'" />
+        <input id="Button1" type="button" value="添加" style="float:right;margin-right:100px; float:right" onclick="location.href='/Administrator/DoctorAdd'" />
 
         <div id="box">
             @Html.Partial("_table")
@@ -28,5 +35,21 @@
 
 
     </div>
+    @* 分页 *@
+    每页 @Model.PageSize 条记录, 共 @Model.PageCount 页, 当前第 @Model.PageNumber 页
+    @Html.PagedListPager(Model,pageIndex=>Url.Action("DoctorShow", new { pageIndex}),
+        new PagedListRenderOptions
+        {
+            LinkToFirstPageFormat="首页",
+            LinkToNextPageFormat="下一页",
+            LinkToPreviousPageFormat="上一页",
+            LinkToLastPageFormat="末页",
+            MaximumPageNumbersToDisplay=5,
+        }
+        )
 </body>
 </html>
+<script>
+    
+
+</script>

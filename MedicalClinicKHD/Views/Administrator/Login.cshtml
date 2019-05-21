@@ -12,10 +12,11 @@
     <title>Login</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.3.1.js"></script>
-
+    <link href="~/Content/iecss.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
 </head>
 <body>
-    <div>
+    <div style="width:300px;height:300px;margin:0 auto;margin-top:200px;">
         @using (Html.BeginForm())
         {
             <table class="table table-striped">
@@ -32,7 +33,9 @@
                 </tr>
                 <tr>
                     <td>
-                        <input id="Submit1" type="submit" value="登录" class="btn btn-primary"  />
+                    </td>
+                    <td>
+                        <input id="Submit1" type="submit" value="登录" class="alert-success" />
                     </td>
                 </tr>
             </table>
@@ -42,6 +45,20 @@
 </body>
 </html>
 <script>
-    
+    function fun() {
+        var type = $("Sl_Type").val();
+        //跳转管理员界面
+        if (type == 0) {
+            location.href = "/Administrator/Administratorpreants";
+        }
+        //跳转医生界面
+        else if (type==1) {
+            location.href="/Administator/"
+        }
+         //跳转护士界面
+        else if (type==2) {
+            location.href="/Administrator/"
+        }
+    }
 
 </script>
