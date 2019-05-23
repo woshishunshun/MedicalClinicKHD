@@ -100,28 +100,7 @@
         });
 
 
-        //查询病人信息
-        function AtientQuery() {
-            var phone = $("#txtPhone").val();
-            $.ajax({
-                url: "http://localhost:55253/API/Nurse/PatientShow?phone=" + phone,
-                type: "get",
-                dataType: "json",
-                success: function (data) {
-                    if (data > 0) {
-                        $("#txtPat_Id").val() = this.Pat_Id
-                        $("#txtPat_Name").val() = this.Pat_Name
-                        $("#txtPat_Sex").val() = this.Pat_Sex
-                        $("#txtPat_Age").val() = this.Pat_Age
-                        $("#txtPat_Phone").val() = this.Pat_Phone
-                        $("#txtPat_Sfz").val() = this.Pat_Sfz
-                    }
-                    else {
-                        alert("查无此人");
-                    }
-                }
-            })
-        }
+        
         $(function () {
             $.ajax({
                 url: "http://localhost:55253/API/Nurse/AdministrativeShow",
@@ -133,37 +112,75 @@
                 }
             })
         })
-        $("#Adm_Name").change(function () {
-            var id = $("#Adm_Name").val();
+        function ChangeOne() {
+            var id = $("#txtAdm_Name").val();
             $.ajax({
                 url: "http://localhost:55253/API/Nurse/DoctorShow?admId=" + id,
                 type: 'get',
                 success: function (data) {
-                    $('#Adm_Name').empty().append("<option>请选择医生</option>");
+                    $('#txtDoc_Name').empty().append("<option>请选择医生</option>");
                     $(data).each(function () {
                         var option = "<option value='" + this.Doc_Id + "'>" + this.Doc_Name + "</option>";
-                        $('#Adm_Name').append(option);
+                        $('#txtDoc_Name').append(option);
                     })
                 }
             })
-        })
-        function UpLogin() {
-            var login = new Object();
-            login.Pat_Id = $("#txtPat_Id").val();
-            login.Reg_Time = $("#txtPat_Id").val();
-            login.Adm_Id = $("#txtAdm_Name").val();
-            login.Doc_Id = $("#txtDoc_Name").val();
-            login.Reg_Type = 0;
+        }
+        //查询病人信息
+        function AtientQuery() {
+            var phone = $("#txtPhone").val();
             $.ajax({
-                url: "http://localhost:55253/API/Nurse/PatientLoginAdd?re=" + JSON.stringify(login),
-                type: "post",
+                url: "http://localhost:55253/API/Nurse/PatientShow?phone=" + phone,
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    $(data).each(function () {
+                        if (data != null) {
+                            $("#txtPat_Id").val(this.Pat_Id)
+                            $("#txtPat_Name").val(this.Pat_Name)
+                            $("#txtPat_Sex").val(this.Pat_Sex)
+                            $("#txtPat_Age").val(this.Pat_Age)
+                            $("#txtPat_Phone").val(this.Pat_Phone)
+                            $("#txtPat_Sfz").val(this.Pat_Sfz)
+                        }
+                        else {
+                            alert("查无此人");
+                        }
+                    })
+                }
+            })
+        }
+        function UpLogin() {
+            
+            var Pat_Id = $("#txtPat_Id").val();
+            var Reg_Time = new Date().getFullYear() + "年" + new Date().getMonth() + "月" + new Date().getDate() + "日" + new Date().getHours() + "时" + new Date().getMinutes() + "分";
+            var Adm_Id = $("#txtAdm_Name").val();
+            var Doc_Id = $("#txtDoc_Name").val();
+            var Reg_Type = 0;
+
+            $.ajax({
+                url: "http://localhost:55253/API/Nurse/PatientLoginShow?pat_id=" + Pat_Id + "&" + "reg_time=" + Reg_Time + "&" + "doc_id=" + Doc_Id,
+                type: "get",
                 dataType: "json",
                 success: function (data) {
                     if (data > 0) {
-                        alert("挂号成功(#^.^#)");
+                        alert("不可重复挂号");
                     }
                     else {
-                        alert("挂号失败o(╥﹏╥)o");
+                        $.ajax({
+                            url: "http://localhost:55253/API/Nurse/PatientLoginAdd",
+                            type: "post",
+                            dataType: "json",
+                            data: { Pat_Id: Pat_Id, Reg_Time: Reg_Time, Adm_Id: Adm_Id, Doc_Id: Doc_Id, Reg_Type: Reg_Type },
+                            success: function (data) {
+                                if (data > 0) {
+                                    alert("挂号成功(#^.^#)");
+                                }
+                                else {
+                                    alert("挂号失败o(╥﹏╥)o");
+                                }
+                            }
+                        })
                     }
                 }
             })
@@ -181,7 +198,7 @@
             </span><a href="javascript:void(0)" title="提示" class="warning" id="warn">*</a>
         </div>
         <div class="row">
-            <a href="#" id="loginbtn" class="close_btn" onclick="AtientQuery()">搜索</a>
+            <a href="#" id="loginbtn"onclick="AtientQuery()">搜索</a>
         </div>
     </div>
     <div id="main_container">
@@ -192,37 +209,15 @@
                     <a href="~/Nurse/Login" class="login" onclick="LoginLayer()">登陆</a>
                     <a href="#" class="sign_up" onclick="RegisterLayer()">注册</a>
                 </div>
-                @*导航栏*@
-                <div id="menu">
-                    <ul>
-                        <li><a href="~/Nurse/PatientQuery" title="">主页</a></li>
-                        <li><a class="current" href="~/Nurse/Registered" title="">挂号</a></li>
-                        <li><a href="~/Nurse/" title="">其他服务</a></li>
-                        <li><a href="~/Nurse/" title="">联系我们</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
         <div id="middle_box">
-
-            <a href="#" id="example" onclick="AtientQuery()">查询病人信息</a>
+            <a href="#" id="example">查询病人信息</a>
             <hr />
-            <a href="#" id="example" onclick="UpLogin()">挂 &nbsp;&nbsp; 号</a>
+            <a href="#" id="example" style="float:left;border:1px solid;margin-left:60px" onclick="UpLogin()">病人挂号</a>
+            <a href="#" id="example" style="border:1px solid;margin-left:0px" onclick="location.href='/Nurse/AppointmentPatient'">预约挂号</a>
         </div>
         <hr />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
         <br />
         <br />
         <br />
@@ -282,7 +277,7 @@
                     <td>
                         <div class="row">
                             医生科室: <span class="inputBox">
-                                <select id="txtAdm_Name" class="text">
+                                <select id="txtAdm_Name" class="text" onchange="ChangeOne()">
                                     <option>请选择科室</option>
                                 </select>|
                             </span>
@@ -299,11 +294,6 @@
                     </td>
                 </tr>
             </table>
-            <div class="row">
-                就诊时间: <span class="inputBox">
-                    <input type="datetime" id="txtReg_Time" placeholder="就诊时间" />|
-                </span>
-            </div>
         </div>
     </div>
 </body>

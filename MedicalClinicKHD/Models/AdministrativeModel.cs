@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MedicalClinicKHD.Models
 {
-    public class AdministrativeModels
+    public class AdministrativeModel
     {
         public int Adm_Id { get; set; } //科室表Id
         public string Adm_Name { get; set; } //科室名称

@@ -20,7 +20,15 @@ namespace MedicalClinicKHD.Controllers
         /// 护士
         /// </summary>
         /// <returns></returns>
-        public ActionResult Login()
+        public ActionResult NurseLogin()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 显示预约查询
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AppointmentPatient()
         {
             return View();
         }

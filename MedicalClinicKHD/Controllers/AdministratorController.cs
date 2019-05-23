@@ -27,7 +27,7 @@ namespace MedicalClinicKHD.Controllers
         /// <param name="staff"></param>
         public void LoginAdd(StaffLoginModels staff)
         {
-            int v = 0;
+            
             string list = Hctp.GetApi("post", "Administrator/LoginAdd", staff);
             if (list=="1")
             {
@@ -126,7 +126,7 @@ namespace MedicalClinicKHD.Controllers
         public ActionResult DoctorAdd()
         {
             string result = Hctp.GetApi("get", "Administrator/administrativesShow", null);
-            List<AdministrativeModels> administratives = JsonConvert.DeserializeObject<List<AdministrativeModels>>(result);
+            List<AdministrativeModel> administratives = JsonConvert.DeserializeObject<List<AdministrativeModel>>(result);
             var selectitem = from a in administratives
                              select new SelectListItem
                              {
@@ -199,7 +199,7 @@ namespace MedicalClinicKHD.Controllers
             var doc = doctors.Where(s => s.Doc_Id == id).FirstOrDefault();
 
             string table = Hctp.GetApi("get", "Administrator/administrativesShow", null);
-            List<AdministrativeModels> administratives = JsonConvert.DeserializeObject<List<AdministrativeModels>>(table);
+            List<AdministrativeModel> administratives = JsonConvert.DeserializeObject<List<AdministrativeModel>>(table);
             var selectitem = from a in administratives
                              select new SelectListItem
                              {

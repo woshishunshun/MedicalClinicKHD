@@ -38,7 +38,7 @@ namespace MedicalClinicKHD.Controllers
         public string GetAdministrative()
         {
             var list = Hctp.GetApi("get", "Administrative/ShowAdministrative");
-            return JsonConvert.SerializeObject(JsonConvert.DeserializeObject<List<AdministrativeModels>>(list));
+            return JsonConvert.SerializeObject(JsonConvert.DeserializeObject<List<AdministrativeModel>>(list));
         }
         /// <summary>
         /// 获取医师 绑定下拉

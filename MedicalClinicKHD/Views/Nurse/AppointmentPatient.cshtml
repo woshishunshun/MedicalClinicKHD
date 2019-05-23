@@ -1,0 +1,118 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/iecss.css" rel="stylesheet" />
+    <link href="~/Content/loginDialog.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <title>AppointmentPatient</title>
+    <script type="text/javascript">
+        function SelectPatient() {
+            var date = $("#txtApp_Date").val();
+            var time = $("#txtApp_Time").val();
+            $.ajax({
+                url: "http://localhost:55253/API/Nurse/AppointmentShow?date=" + date + "&" + "time=" + time,
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    $("#tb2").empty();
+                    $(data).each(function () {
+                        var dt = "<tr>"
+                            + "<td>" + this.Pat_Name + "</td>"
+                            + "<td>" + this.Pat_Sex + "</td>"
+                            + "<td>" + this.Pat_Age + "</td>"
+                            + "<td>" + this.Adm_Name + "</td>"
+                            + "<td>" + this.Doc_Name + "</td>"
+                            + "<td>" + this.Pat_Allergy + "</td>"
+                            + "<td><a href='#'onclick='Add(" + this.Pat_Id + ")'>挂号</a></td>"
+                            + "</tr >";
+                        $("#tb2").append(dt);
+                    })
+                }
+            })
+        }
+        function Add(Pat_Id) {
+            $.ajax({
+                url: "http://localhost:55253/API/Nurse/PatientShows?id=" + Pat_Id,
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    $(data).each(function () {
+                        var Pat_Id = this.Pat_Id;
+                        var Reg_Time = new Date().getFullYear() + "年" + new Date().getMonth() + "月" + new Date().getDate() + "日" + new Date().getHours() + "时" + new Date().getMinutes() + "分";
+                        var Adm_Id = this.Adm_Id;
+                        var Doc_Id = this.Doc_Id;
+                        var Reg_Type = 0;
+                        $.ajax({
+                            url: "http://localhost:55253/API/Nurse/PatientLoginAdd",
+                            type: "post",
+                            dataType: "json",
+                            data: { Pat_Id: Pat_Id, Reg_Time: Reg_Time, Adm_Id: Adm_Id, Doc_Id: Doc_Id, Reg_Type: Reg_Type },
+                            success: function (data) {
+                                if (data > 0) {
+                                    alert("挂号成功(#^.^#)");
+                                }
+                                else {
+                                    alert("挂号失败o(╥﹏╥)o");
+                                }
+                            }
+                        })
+
+                    })
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+
+    <div id="main_container">
+        <div class="header">
+            <div id="logo"><a href="~/Nurses/PatientQuery"><img src="~/images/logo.png" alt="" title="" width="162" height="54" border="0" /></a></div>
+            <div class="right_header">
+                <div class="top_menu">
+                    <a href="~/Nurse/Login" class="login" onclick="LoginLayer()">登陆</a>
+                    <a href="#" class="sign_up" onclick="RegisterLayer()">注册</a>
+                </div>
+            </div>
+        </div>
+        <div id="middle_box">
+            <a href="#" id="example" onclick="SelectPatient()">查询预约信息</a>
+            <hr />
+            <a href="#" id="example" onclick="location.href='/Nurse/Registered'">返回挂号界面</a>
+        </div>
+        <div style="border:1px solid; width:100%">
+            <div class="row">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                日期: <span class="inputBox">
+                    <input class="text" type="text" id="txtApp_Date" placeholder="XX月XX日" />|
+                </span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                时间: <span class="inputBox">
+                    <input class="text" type="text" id="txtApp_Time" placeholder="XX:00-XX:00" />|
+                </span>
+            </div>
+            <table style="border:1px solid; width:100%">
+                <tr>
+                    <td>姓名</td>
+                    <td>性别</td>
+                    <td>年龄</td>
+                    <td>科室</td>
+                    <td>医生</td>
+                    <td>备注</td>
+                    <td>操作</td>
+                </tr>
+                <tbody id="tb2"></tbody>
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>
